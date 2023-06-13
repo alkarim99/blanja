@@ -14,6 +14,7 @@ import categoryImg6 from "../assets/images/Category Glasses.png";
 import { useNavigate } from "react-router-dom";
 import Card from "../component/Card";
 import axios from "axios";
+import ContentCategory from "../component/ContentCategory";
 
 const categoryData = [
   {
@@ -116,11 +117,36 @@ function App() {
         <section className="mt-5">
           <h2 className="metropolis-b">New</h2>
           <span>You've never seen it before</span>
+          <div className="row g-4 align-items-stretch">
+            {listNewProduct.map((item) => {
+              return (
+                <ContentCategory
+                  title={item.title}
+                  price={item.price}
+                  storename={item.storename}
+                  productpictures={item.productpictures}
+                  id={item.id}
+                />
+              );
+            })}
+          </div>
         </section>
         <section className="mt-5">
           <h2 className="metropolis-b">Popular</h2>
           <span>Find clothes that are trending recently</span>
-          <div className="row g-4 align-items-center"></div>
+          <div className="row g-4 align-items-center">
+          {listPopular.map((item) => {
+              return (
+                <ContentCategory
+                  title={item.title}
+                  price={item.price}
+                  storename={item.storename}
+                  productpictures={item.productpictures}
+                  id={item.id}
+                />
+              );
+            })}
+          </div>
         </section>
       </main>
       {/* ending Home */}
