@@ -7,10 +7,12 @@ import iconMail from "../assets/images/Icon Mail.svg";
 import iconFilter from "../assets/images/Icon Filter.svg";
 import profileImage from "../assets/images/Profile Image.png";
 import { Link } from "react-router-dom";
+import Modal from "./Modal";
 
 function Navbar() {
   return (
     <div>
+      <Modal />
       <nav className="navbar fixed-top navbar-expand-lg bg-white shadow">
         <div className="container">
         <Link
@@ -45,8 +47,10 @@ function Navbar() {
                     type="search"
                     placeholder="Search"
                     aria-label="Search"
+                    data-bs-toggle="modal"
+                    data-bs-target="#search-product"
                   />
-                  <a href="#" data-bs-toggle="modal" data-bs-target="#filter">
+                  <a href="#" className="corong">
                     <img
                       src={iconFilter}
                       className="rounded-5 filter-img"

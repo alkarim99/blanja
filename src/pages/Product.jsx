@@ -10,7 +10,7 @@ import ellipseBeige from "../assets/images/Ellipse Beige.svg";
 import ellipseBlue from "../assets/images/Ellipse Blue.svg";
 import iconLine from "../assets/images/Icon Line.svg";
 import iconLineInactive from "../assets/images/Icon Line Inactive.svg";
-
+import Navbar from "../component/Navbar";
 import cardImage from "../assets/images/Product Dummy.png";
 
 import Adder from "../component/Adder";
@@ -71,6 +71,7 @@ function Product() {
  
   return (
     <>
+    <Navbar />
       <section className="container mt-5 pt-5">
         <div className="row">
           <nav style={{}} aria-label="breadcrumb">
