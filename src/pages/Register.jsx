@@ -15,7 +15,7 @@ function Register() {
 
     const handleRegistration = () => {
         axios
-          .post(`${process.env.REACT_APP_BASE_URL}/users`, {
+          .post(`${process.env.REACT_APP_API_URL}/users`, {
             email: email,
             fullname: fullName,
             password: password,

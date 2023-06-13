@@ -21,7 +21,7 @@ function Login() {
 
   const handleLogin = () => {
     axios
-      .post(`${process.env.REACT_APP_BASE_URL}/auth/login`, {
+      .post(`${process.env.REACT_APP_API_URL}/auth/login`, {
         email: email,
         password: password,
       })
