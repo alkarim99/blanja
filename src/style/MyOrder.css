@@ -1,0 +1,46 @@
+div{
+ font-family: Metropolis;
+}
+.contentCheckOut{
+    height: 90px;
+    width: 90%;
+    border-radius: 5px;
+}
+
+.BtnCheckOut{
+    border-radius: 25px;
+    width: 100%;
+    height: 25px;
+    font-size: 11px;
+}
+ 
+.cardCost{
+ height: 100%;
+ width: 40%;
+}
+
+.checkBox:hover{
+    background-color: #ed5249;
+}
+
+@media only screen and (max-width: 600px) {
+  .MyOrderHP{
+    display: flex;
+    flex-direction: column!important;
+    flex-wrap: wrap;
+  }
+
+  .ContentMyOrderHP{
+    width: 100%!important ;
+  }
+
+  .ItemMyOrder{
+    display: flex;
+    flex-direction: column!important;
+    flex-wrap: wrap;
+  }
+
+  .cardCost{
+    width: 100%!important ;
+  }
+}

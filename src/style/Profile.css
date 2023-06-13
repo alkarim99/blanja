@@ -1,0 +1,62 @@
+*{
+ font-family: Metropolis;
+}
+
+.ImgProfileLife{
+    border-radius: 100%;
+    width: 65px;
+    height: 65px;
+}
+
+.ImgProfileRight{
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+}
+
+.garisHorizontal{
+    border-left: 1px black solid;
+    height: 170px;
+    width: 0px;
+}
+@media only screen and (max-width: 600px){
+    .ProfileBg{
+        flex-direction: column;
+    }
+    .ProfileBgLift{
+        display: flex;
+        width: 100% !important;
+        height: 15rem !important;
+        align-content: center;
+    }
+
+    .ProfileBgRight{
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-top: 10px !important;
+    }
+    .ProfileBgRightTotal{
+        flex-direction: column-reverse;
+    }
+    
+    .ImgProfileRight{
+        display: flex;
+        align-self: center;
+    }
+
+    .garisHorizontal{
+        display: none;
+    }
+
+    .ImgProfileLife{
+        margin-left: 25px !important;
+    }
+
+    .MenuFotoLife{
+        flex-direction: column;
+    }
+
+    .NameProfileLife{
+        margin-top: 5px !important;
+    }
+}

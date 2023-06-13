@@ -1,0 +1,13 @@
+*{
+ font-family: Metropolis;
+}
+
+.ImgProfileLife{
+    border-radius: 100%;
+    width: 65px;
+    height: 65px;
+}
+
+.borderTop{
+    border-style: dotted;
+}

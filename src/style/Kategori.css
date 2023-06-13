@@ -1,0 +1,55 @@
+/* navbar */
+.navbar{
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   height: 70px;
+}
+
+.fotoProfile{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.iconNavbar{
+    width: 20px;
+    height: 20px;
+}
+
+.iconNavbarLogo{
+    width: 25px;
+    height: 25px;
+}
+
+.search{
+    width: 90%;
+    height: 30px;
+    border-radius: 25px;
+    font-size: 14px;
+}
+
+/* content */
+.card{
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);  
+}
+
+
+
+@media only screen and (max-width: 600px){
+    .iconNavbar{
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.ItemCategory{
+    width: 10rem !important;
+}
+
+.imgItem{
+    height: 10rem !important;
+}
+/* .MenuIcon{
+    display: none;
+    visibility: hidden;
+} */
+
+}
