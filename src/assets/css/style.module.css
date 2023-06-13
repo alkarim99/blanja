@@ -1,0 +1,63 @@
+/* @import "sub/fonts.css";
+@import "bootstrap/bootstrap.min.css";
+@import "sub/buttons.css"; */
+
+body {
+  background-color: white;
+  font-family: metropolis-r;
+}
+
+h2 {
+  font-family: metropolis-b;
+  line-height: 0.5em;
+}
+
+.filter-img {
+  width: 25px;
+}
+
+.input {
+  width: 25em;
+}
+
+.btn-primary,
+.btn-outline-secondary {
+  width: 100px;
+  margin-left: 0.5rem;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+.label {
+  border: 1px solid #000;
+  display: inline-block;
+  padding: 5px;
+  width: 2em;
+  text-align: center;
+}
+
+.labelCat {
+  border: 1px solid #000;
+  display: inline-block;
+  padding: 5px;
+  width: 9em;
+  text-align: center;
+}
+
+input[type="checkbox"]:checked + .labelCat {
+  background: #db3022;
+  border: 1px solid #db3022;
+  color: #fff;
+}
+
+input[type="checkbox"]:checked + .label {
+  background: #db3022;
+  border: 1px solid #db3022;
+  color: #fff;
+}
+
+h1 {
+  color: red;
+}

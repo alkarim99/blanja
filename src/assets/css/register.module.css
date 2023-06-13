@@ -1,0 +1,13 @@
+@import "sub/fonts.css";
+@import "bootstrap/bootstrap.min.css";
+@import "sub/buttons.css";
+
+h1 {
+  color: #db3022;
+}
+
+button {
+  height: 48px;
+  width: 123px;
+  font-size: 14px;
+}

@@ -1,0 +1,78 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+/* Calling font */
+@font-face {
+  font-family: "metropolis-r";
+  src: url("/src/assets/fonts/Metropolis\ Font\ family/Metropolis-Regular.otf");
+}
+@font-face {
+  font-family: "metropolis-b";
+  src: url("/src/assets/fonts/Metropolis\ Font\ family/Metropolis-Bold.otf");
+}
+
+/* Calling class font */
+.metropolis-r {
+  font-family: metropolis-r;
+}
+.metropolis-b {
+  font-family: metropolis-b;
+}
+
+.nav-pills {
+  --bs-nav-pills-border-radius: 0.375rem;
+  --bs-nav-pills-link-active-color: #fff;
+  --bs-nav-pills-link-active-bg: #db3022;
+}
+
+.nav-pills .nav-link {
+  border: 1px solid #db2022;
+  border-radius: 0%;
+}
+
+.nav-pills .nav-left {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.nav-pills .nav-right {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.nav-link,
+.nav-link:hover {
+  color: #db2022;
+}
+
+/* Override Bootstrap*/
+.btn-outline-primary {
+  --bs-btn-border-color: #db3022;
+  --bs-btn-color: #db3022;
+  --bs-btn-hover-bg: #db3022;
+  --bs-btn-hover-border-color: #db3022;
+  --bs-btn-active-bg: #db3022;
+  --bs-btn-active-border-color: #db3022;
+  --bs-btn-disabled-color: #db3022;
+  --bs-btn-disabled-border-color: #db3022;
+}
+
+.btn-primary {
+  --bs-btn-bg: #db3022 !important;
+  --bs-btn-border-color: #db3022 !important;
+  --bs-btn-hover-bg: #db2022 !important;
+  --bs-btn-hover-border-color: #db2022 !important;
+  --bs-btn-active-bg: #db3022 !important;
+  --bs-btn-active-border-color: #db3022 !important;
+  --bs-btn-disabled-bg: #db3022 !important;
+  --bs-btn-disabled-border-color: #db3022 !important;
+}
+
+a,
+a:hover {
+  color: #db3022;
+  text-decoration: none;
+}
+
+.primary-color {
+  color: #db3022;
+}

@@ -1,0 +1,6 @@
+.authButton {
+  height: 48px;
+  aspect-ratio: 30/14;
+  font-size: 14px;
+  background-color: rgb(255, 255, 255);
+}

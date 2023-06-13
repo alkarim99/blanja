@@ -1,0 +1,11 @@
+.categoryItem {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background-color: #cc0b04;
+  /* background-image: url("../images/Category\ T-Shirt.png"); */
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  font-family: metropolis-b;
+  font-size: 2rem;
+}
