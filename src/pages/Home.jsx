@@ -78,6 +78,7 @@ function App() {
   //         navigate("/login")
   //     }
   // }, [])
+  
   React.useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/products?sortType=ASC&page=1`)
