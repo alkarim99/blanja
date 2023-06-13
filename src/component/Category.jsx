@@ -7,7 +7,7 @@ function Category({ categoryData }) {
       <div className="row g-3">
         {categoryData.map((data, index) => {
           return (
-            <div key={index.toString()} className="col-lg-3 col-xxl-2 col-6">
+            <div key={index.toString()} className="col-lg-4 col-xxl-2 col-6">
               <div
                 className={`${categoryCSS.categoryItem} d-flex justify-content-center align-items-center rounded-3`}
                 style={{ backgroundColor: `${data.categoryColor}` }}
