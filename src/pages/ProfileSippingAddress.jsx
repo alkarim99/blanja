@@ -17,14 +17,13 @@ function ProfileSippingAddress() {
     } else {
       const user_id = localStorage.getItem("user_id")
       axios
-        .get(`${process.env.REACT_APP_API_URL}/address/users/${user_id}`)
+        .get(`${process.env.REACT_APP_API_URL}/address/user/${user_id}`)
         .then((response) => {
-          setAddress(response?.data?.data[0])
+          setAddress(response?.data?.data)
         })
+      console.log(address.length)
     }
   }, [])
-
-  console.log(address.length)
 
   return (
     <div className="" style={{ backgroundColor: "#eeeeee" }}>
@@ -51,6 +50,14 @@ function ProfileSippingAddress() {
 
             <p className="text-muted">Manage your shipping address</p>
             <hr />
+
+            {address.length == 0 ? (
+              <div className={"alert alert-warning"} role="alert">
+                Please add your address!
+              </div>
+            ) : (
+              ""
+            )}
 
             <div className="d-flex flex-column justify-content-evenly pb-5 mx-5">
               {/* content top */}
@@ -101,7 +108,7 @@ function ProfileSippingAddress() {
                             type="text"
                             class="form-control"
                             id="recipient-name"
-                            placeholder="Rumah"
+                            placeholder="Home"
                           />
                         </div>
 
@@ -194,21 +201,25 @@ function ProfileSippingAddress() {
 
               {/* content bottom */}
               <div className="d-flex flex-column mt-4 pb-3">
-                <span class="border border-danger p-4 rounded-2">
-                  <h6 className="fw-bold">Address Jane</h6>
-                  <p>
-                    Perumahan Sapphire Mediterania, Wiradadi, Kec. Sokaraja,
-                    Kabupaten Banyumas, Jawa Tengah, 53181 [Tokopedia Note: blok
-                    c 16] Sokaraja, Kab. Banyumas, 53181
-                  </p>
-                  <Link
-                    to="#"
-                    className="text-danger fw-bold"
-                    style={{ textDecoration: "none" }}
-                  >
-                    Change Address
-                  </Link>
-                </span>
+                {address.length > 0
+                  ? address.map((item) => {
+                      return (
+                        <span class="border border-danger my-3 p-4 rounded-2">
+                          <h6 className="fw-bold">{item.addressas}</h6>
+                          <p>
+                            {item.address}, {item.city}, {item.postalcode}
+                          </p>
+                          <Link
+                            to="#"
+                            className="text-danger fw-bold"
+                            style={{ textDecoration: "none" }}
+                          >
+                            Change Address
+                          </Link>
+                        </span>
+                      )
+                    })
+                  : ""}
               </div>
             </div>
           </div>
