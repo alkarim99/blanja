@@ -19,7 +19,7 @@ function ItemCheckOut(props) {
     <>
       <div
         className="card mb-2 ItemCheckOut"
-        style={{ cursor: "pointer", width: "75%" }}
+        style={{ cursor: "pointer", width: "100%" }}
       >
         <div className="card-body d-flex flex-row justify-content-between align-items-center">
           <div className="d-flex flex-row">

@@ -1,11 +1,46 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import axios from "axios"
 import "../style/ProfileMyOrder.css"
 
 import Navbar from "../component/Navbar"
 import MenuLifeProfile from "../component/MenuLifeProfile"
 
 function ProfileMyOrder() {
+  const navigate = useNavigate()
+  const [profile, setProfile] = React.useState([])
+  const [order, setOrder] = React.useState([])
+
+  React.useEffect(() => {
+    if (!localStorage.getItem("auth")) {
+      navigate("/login")
+    } else {
+      const user_id = localStorage.getItem("user_id")
+      axios
+        .get(`${process.env.REACT_APP_API_URL}/users/${user_id}`)
+        .then((response) => {
+          setProfile(response?.data?.data[0])
+        })
+      axios
+        .get(`${process.env.REACT_APP_API_URL}/orders/user/${user_id}`)
+        .then((response) => {
+          setOrder(response?.data?.data)
+        })
+    }
+  }, [])
+
+  const handleRupiah = (price) => {
+    let priceString = price
+    let sisa = priceString?.length % 3
+    let rupiah = priceString?.substr(0, sisa)
+    let ribuan = priceString?.substr(sisa).match(/\d{3}/g)
+    if (ribuan) {
+      let separator = sisa ? "." : ""
+      rupiah += separator + ribuan.join(".")
+      return rupiah
+    }
+  }
+
   return (
     <div className="" style={{ backgroundColor: "#eeeeee" }}>
       {/* Navbar */}
@@ -13,7 +48,7 @@ function ProfileMyOrder() {
 
       <div className="container-fluide d-flex ProfileBg">
         {/* control Profile lift */}
-        <MenuLifeProfile />
+        <MenuLifeProfile fullname={profile.fullname} />
 
         {/* Control Profile right */}
         <div
@@ -61,6 +96,28 @@ function ProfileMyOrder() {
                 </a>
               </li>
             </ul>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th scope="col">Created At</th>
+                  <th scope="col">Payment Status</th>
+                  <th scope="col">Order Status</th>
+                  <th scope="col">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {order.map((item) => {
+                  return (
+                    <tr>
+                      <td>{item.createdat.split("T")[0]}</td>
+                      <td>{item.paymentstatus}</td>
+                      <td>{item.orderstatus}</td>
+                      <td>Rp {handleRupiah(item.total)}</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
             <hr />
             <div style={{ marginBottom: "360px" }}></div>
           </div>

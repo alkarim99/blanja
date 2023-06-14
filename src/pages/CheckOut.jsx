@@ -17,6 +17,7 @@ function CheckOut() {
   const [profile, setProfile] = React.useState([])
   const [product, setProduct] = React.useState([])
   const [address, setAddress] = React.useState([])
+  const [orderid, setOrderid] = React.useState("")
 
   React.useEffect(() => {
     window.scroll(0, 0)
@@ -62,18 +63,11 @@ function CheckOut() {
     }
   }
 
-  // const randomId = function (length = 6) {
-  //   return Math.random()
-  //     .toString(36)
-  //     .substring(2, length + 2)
-  // }
-
   const handlePay = () => {
     const order_id = uuidv4()
-    console.log(order_id)
+    setOrderid(order_id)
     axios
       .post(`${process.env.REACT_APP_API_URL}/payment`, {
-        // .post(`http://localhost:8000/payment`, {
         transaction_details: {
           order_id: `INNOVIXTECH-${order_id}`,
           gross_amount:
@@ -96,20 +90,25 @@ function CheckOut() {
 
   const handleBuy = () => {
     axios
-      .post(`${process.env.REACT_APP_API_URL}/orders/`, {
-        product_id: product.id,
-        user_id: localStorage.getItem("user_id"),
-        quantity: "1",
-        paymentmethod: "GoPay",
-        address_id: "1",
-        total: "100000",
-        paymentstatus: "Not yet paid",
-        orderstatus: "",
+      .get(`https://api.sandbox.midtrans.com/v2/${orderid}/status`)
+      .then((response) => {
+        console.log(response)
       })
-      .then((response) => setProduct(response?.data?.data[0]))
-      .catch((err) => {
-        console.log("error :", err)
-      })
+    // axios
+    //   .post(`${process.env.REACT_APP_API_URL}/orders/`, {
+    //     product_id: product.id,
+    //     user_id: localStorage.getItem("user_id"),
+    //     quantity: "1",
+    //     paymentmethod: "GoPay",
+    //     address_id: "1",
+    //     total: "100000",
+    //     paymentstatus: "Not yet paid",
+    //     orderstatus: "",
+    //   })
+    //   .then((response) => setProduct(response?.data?.data[0]))
+    //   .catch((err) => {
+    //     console.log("error :", err)
+    //   })
   }
 
   return (
@@ -131,12 +130,10 @@ function CheckOut() {
                 style={{ width: "90%" }}
               >
                 <div className="card-body">
-                  <h5 className="card-title text-start">Andreas Jane</h5>
-                  <p className="card-text text-start">
-                    Perumahan Sapphire Mediterania, Wiradadi, Kec. Sokaraja,
-                    Kabupaten Banyumas, Jawa Tengah, 53181 [Tokopedia Note: blok
-                    c 16] Sokaraja, Kab. Banyumas, 53181
-                  </p>
+                  <h5 className="card-title text-start">
+                    {address.recipientsname}
+                  </h5>
+                  <p className="card-text text-start">{address.address}</p>
 
                   {/* <a href="#" className="btn btn-outline-secondary float-start">
                     Choose another address
