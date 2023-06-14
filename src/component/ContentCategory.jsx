@@ -12,12 +12,23 @@ function ContentCategory(props) {
     productpictures,
     id,
   } = props
+
+  let priceString = price.toString()
+  let sisa = priceString.length % 3
+  let rupiah = priceString.substr(0, sisa)
+  let ribuan = priceString.substr(sisa).match(/\d{3}/g)
+
+  if (ribuan) {
+    let separator = sisa ? "." : ""
+    rupiah += separator + ribuan.join(".")
+  }
+
   return (
     <>
       <Link
         className="card mb-3 me-3 ItemCategory text-decoration-none"
         style={{ width: "15rem", cursor: "pointer" }}
-        to={`/Detail-Produk/${id}`}
+        to={`/product/${id}`}
       >
         <img
           src={`${productpictures}`}
@@ -27,7 +38,7 @@ function ContentCategory(props) {
         />
         <div className="card-body" />
         <h5 className="card-title text-start ms-3">{title}</h5>
-        <p className="card-text text-danger text-start ms-3">{price}</p>
+        <p className="card-text text-danger text-start ms-3">Rp {rupiah}</p>
         <p className="text-muted text-start ms-3">{storename}</p>
       </Link>
     </>

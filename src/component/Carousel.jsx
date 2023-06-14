@@ -1,6 +1,6 @@
-import React from "react";
-import Carousel1 from "../assets/images/Carrousel 1.png";
-import Carousel2 from "../assets/images/Carrousel 2.png";
+import React from "react"
+import Carousel1 from "../assets/images/Carrousel 1.png"
+import Carousel2 from "../assets/images/Carrousel 2.png"
 const dataCarousel = [
   {
     carouselImg: Carousel1,
@@ -14,11 +14,11 @@ const dataCarousel = [
   {
     carouselImg: Carousel2,
   },
-];
+]
 
 function Carousel({ dataCarousel }) {
-  const indicator = [];
-  const carouselImage = [];
+  const indicator = []
+  const carouselImage = []
   dataCarousel.map((element, index) => {
     indicator.push(
       <button
@@ -30,7 +30,7 @@ function Carousel({ dataCarousel }) {
         aria-current={index === 0 ? "true" : "false"}
         aria-label={`Slide ${index}`}
       />
-    );
+    )
     carouselImage.push(
       <div
         key={index.toString()}
@@ -38,9 +38,9 @@ function Carousel({ dataCarousel }) {
       >
         <img src={element.carouselImg} className="d-block w-100" alt="..." />
       </div>
-    );
-    return  ;
-  });
+    )
+    return
+  })
   return (
     <>
       <div id="carouselExampleIndicators" className="carousel slide">
@@ -66,7 +66,7 @@ function Carousel({ dataCarousel }) {
         </button>
       </div>
     </>
-  );
+  )
 }
 
-export default Carousel;
+export default Carousel

@@ -1,20 +1,20 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/js/bootstrap.bundle.min"
 
 //halaman yang diimport
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Profile from "./pages/Profile";
-import Product from "./pages/Product";
-import CheckOut from  "./pages/CheckOut";
-import Kategori from "./pages/Kategori";
-import MyOrder from "./pages/MyOrder";
-import ProfileMyOrder from "./pages//ProfileMyOrder";
-import ProfileSippingAddress from "./pages/ProfileSippingAddress";
+import Home from "./pages/Home"
+import Login from "./pages/Login"
+import Register from "./pages/Register"
+import Profile from "./pages/Profile"
+import Product from "./pages/Product"
+import CheckOut from "./pages/CheckOut"
+import Kategori from "./pages/Kategori"
+import MyOrder from "./pages/MyOrder"
+import ProfileMyOrder from "./pages//ProfileMyOrder"
+import ProfileSippingAddress from "./pages/ProfileSippingAddress"
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import axios from "axios"
 
 const router = createBrowserRouter([
   {
@@ -34,15 +34,15 @@ const router = createBrowserRouter([
     element: <Profile />,
   },
   {
-    path: "/product",
+    path: "/product/:id",
     element: <Product />,
   },
   {
-    path: "/CheckOut",
+    path: "/CheckOut/:id/:quantity",
     element: <CheckOut />,
   },
   {
-    path: "/Kategori",
+    path: "/Kategori/:category",
     element: <Kategori />,
   },
   {
@@ -61,14 +61,27 @@ const router = createBrowserRouter([
     path: "/ProfileSippingAddress",
     element: <ProfileSippingAddress />,
   },
-]);
+])
 
 function App() {
+  axios.interceptors.request.use(
+    (config) => {
+      if (localStorage.getItem("token")) {
+        config.headers["Authorization"] = `Bearer ${localStorage.getItem(
+          "token"
+        )}`
+      }
+      return config
+    },
+    (error) => {
+      Promise.reject(error)
+    }
+  )
   return (
     <div className="App">
-     <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

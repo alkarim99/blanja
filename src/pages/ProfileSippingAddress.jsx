@@ -1,11 +1,31 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import "../style/ProfileSippingAddress.css"
 
 import Navbar from "../component/Navbar"
 import MenuLifeProfile from "../component/MenuLifeProfile"
+import axios from "axios"
 
 function ProfileSippingAddress() {
+  const navigate = useNavigate()
+
+  const [address, setAddress] = React.useState([])
+
+  React.useEffect(() => {
+    if (!localStorage.getItem("auth")) {
+      navigate("/login")
+    } else {
+      const user_id = localStorage.getItem("user_id")
+      axios
+        .get(`${process.env.REACT_APP_API_URL}/address/users/${user_id}`)
+        .then((response) => {
+          setAddress(response?.data?.data[0])
+        })
+    }
+  }, [])
+
+  console.log(address.length)
+
   return (
     <div className="" style={{ backgroundColor: "#eeeeee" }}>
       {/* Navbar */}
