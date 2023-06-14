@@ -48,7 +48,7 @@ function ItemCheckOut(props) {
 
           <div className="mx-2">{quantity}x</div>
           <div>
-            <div className=" end-2" style={{ width: "50px" }}>
+            <div className="end-2" style={{ width: "100px" }}>
               Rp {handleRupiah(product.price)}
             </div>
           </div>

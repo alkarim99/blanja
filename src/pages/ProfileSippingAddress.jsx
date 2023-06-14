@@ -10,6 +10,7 @@ import Swal from "sweetalert2"
 function ProfileSippingAddress() {
   const navigate = useNavigate()
 
+  const [profile, setProfile] = React.useState([])
   const [address, setAddress] = React.useState([])
   const [addressas, setAddressas] = React.useState([])
   const [recipientsname, setRecipientsname] = React.useState([])
@@ -35,6 +36,11 @@ function ProfileSippingAddress() {
         .get(`${process.env.REACT_APP_API_URL}/address/user/${user_id}`)
         .then((response) => {
           setAddress(response?.data?.data)
+        })
+      axios
+        .get(`${process.env.REACT_APP_API_URL}/users/${user_id}`)
+        .then((response) => {
+          setProfile(response?.data?.data[0])
         })
     }
   }, [])
@@ -106,7 +112,7 @@ function ProfileSippingAddress() {
 
       <div className="container-fluide d-flex ProfileBg">
         {/* control Profile lift */}
-        <MenuLifeProfile />
+        <MenuLifeProfile fullname={profile.fullname} />
 
         {/* Control Profile right */}
         <div

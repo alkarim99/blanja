@@ -6,35 +6,48 @@ import ItemCheckOut from "../component/ItemCheckOut"
 import axios from "axios"
 import { useLocation } from "react-router"
 import { useNavigate } from "react-router-dom"
+import { Buffer } from "buffer"
+import { v4 as uuidv4 } from "uuid"
 
 function CheckOut() {
   const navigate = useNavigate()
   const location = useLocation()
   const id = location?.pathname?.split("/")[2]
   const quantity = location?.pathname?.split("/")[3]
+  const [profile, setProfile] = React.useState([])
   const [product, setProduct] = React.useState([])
   const [address, setAddress] = React.useState([])
 
   React.useEffect(() => {
     window.scroll(0, 0)
+    if (!localStorage.getItem("auth")) {
+      navigate("/login")
+    } else {
+      axios
+        .get(`${process.env.REACT_APP_API_URL}/products/${id}`)
+        .then((response) => setProduct(response?.data?.data[0]))
+        .catch((err) => {
+          console.log("error :", err)
+        })
 
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/products/${id}`)
-      .then((response) => setProduct(response?.data?.data[0]))
-      .catch((err) => {
-        console.log("error :", err)
-      })
+      axios
+        .get(
+          `${process.env.REACT_APP_API_URL}/address/user/${localStorage.getItem(
+            "user_id"
+          )}`
+        )
+        .then((response) => setAddress(response?.data?.data[0]))
+        .catch((err) => {
+          console.log("error :", err)
+        })
 
-    axios
-      .get(
-        `${process.env.REACT_APP_API_URL}/address/user/${localStorage.getItem(
-          "user_id"
-        )}`
-      )
-      .then((response) => setAddress(response?.data?.data[0]))
-      .catch((err) => {
-        console.log("error :", err)
-      })
+      const user_id = localStorage.getItem("user_id")
+      axios
+        .get(`${process.env.REACT_APP_API_URL}/users/${user_id}`)
+        .then((response) => {
+          setProfile(response?.data?.data[0])
+        })
+    }
   }, [])
 
   const handleRupiah = (price) => {
@@ -47,6 +60,38 @@ function CheckOut() {
       rupiah += separator + ribuan.join(".")
       return rupiah
     }
+  }
+
+  // const randomId = function (length = 6) {
+  //   return Math.random()
+  //     .toString(36)
+  //     .substring(2, length + 2)
+  // }
+
+  const handlePay = () => {
+    const order_id = uuidv4()
+    console.log(order_id)
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/payment`, {
+        // .post(`http://localhost:8000/payment`, {
+        transaction_details: {
+          order_id: `INNOVIXTECH-${order_id}`,
+          gross_amount:
+            parseInt(product.price) * parseInt(quantity) + parseInt("20000"),
+        },
+        credit_card: {
+          secure: true,
+        },
+        customer_details: {
+          first_name: profile.fullname.split(" ")[0],
+          last_name: profile.fullname.split(" ")[1],
+          email: profile.email,
+          phone: profile.phonenumber,
+        },
+      })
+      .then((response) => {
+        window.snap.pay(response?.data?.token)
+      })
   }
 
   const handleBuy = () => {
@@ -281,7 +326,10 @@ function CheckOut() {
                   <p className="text-danger">
                     Rp{" "}
                     {handleRupiah(
-                      (parseInt(product.price) + parseInt("20000")).toString()
+                      (
+                        parseInt(product.price) * parseInt(quantity) +
+                        parseInt("20000")
+                      ).toString()
                     )}
                   </p>
                 </div>
@@ -290,8 +338,9 @@ function CheckOut() {
                 <button
                   type="button"
                   class="btn btn-danger BtnCheckOut"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal1"
+                  onClick={handlePay}
+                  // data-bs-toggle="modal"
+                  // data-bs-target="#exampleModal1"
                 >
                   Select payment
                 </button>
@@ -378,21 +427,36 @@ function CheckOut() {
                       <hr className="text-muted" />
 
                       <div className="d-flex flex-column mx-3">
-                        <h5>shopping summary</h5>
+                        <h5>Shopping Summary</h5>
                         <div className="d-flex justify-content-between">
                           <p className="text-muted">Order</p>
-                          <p className="fw-bold">$ 40.0</p>
+                          <p className="fw-bold">
+                            Rp{" "}
+                            {handleRupiah(
+                              (
+                                parseInt(product.price) * parseInt(quantity)
+                              ).toString()
+                            )}
+                          </p>
                         </div>
                         <div className="d-flex justify-content-between">
                           <p className="text-muted">Delivery</p>
-                          <p className="fw-bold">$ 5.0</p>
+                          <p className="fw-bold">Rp 20.000</p>
                         </div>
                       </div>
 
                       <div class="modal-footer d-flex justify-content-between">
                         <div className="d-flex flex-column justify-content-between">
-                          <label className="text-muted">Delivery</label>
-                          <label className="fw-bold text-danger">$ 45.0</label>
+                          <label className="text-muted">Shopping Summary</label>
+                          <label className="fw-bold text-danger">
+                            Rp{" "}
+                            {handleRupiah(
+                              (
+                                parseInt(product.price) * parseInt(quantity) +
+                                parseInt("20000")
+                              ).toString()
+                            )}
+                          </label>
                         </div>
                         <button
                           type="button"

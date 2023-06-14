@@ -7,20 +7,14 @@ import { BsFillClipboard2Fill } from "react-icons/bs"
 import { VscAccount } from "react-icons/vsc"
 import axios from "axios"
 
-function MenuLifeProfile() {
+function MenuLifeProfile(props) {
+  const { fullname } = props
   const navigate = useNavigate()
-  const [profile, setProfile] = React.useState([])
+  // const [profile, setProfile] = React.useState("")
 
   React.useEffect(() => {
     if (!localStorage.getItem("auth")) {
       navigate("/login")
-    } else {
-      const user_id = localStorage.getItem("user_id")
-      axios
-        .get(`${process.env.REACT_APP_API_URL}/users/${user_id}`)
-        .then((response) => {
-          setProfile(response?.data?.data[0])
-        })
     }
   }, [])
 
@@ -43,7 +37,7 @@ function MenuLifeProfile() {
             alt="Foto PRofile"
           />
           <div className="ms-3 mt-5 NameProfileLife">
-            <p className="lh-1 mt-2 fw-bold ">{profile.fullname}</p>
+            <p className="lh-1 mt-2 fw-bold ">{fullname}</p>
 
             <p
               className="text-muted lh-1 me-2"

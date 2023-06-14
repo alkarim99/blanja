@@ -70,7 +70,7 @@ function Profile() {
 
       <div className="container-fluide d-flex ProfileBg">
         {/* control Profile lift */}
-        <MenuLifeProfile />
+        <MenuLifeProfile fullname={profile.fullname} />
 
         {/* Control Profile right */}
         <div
