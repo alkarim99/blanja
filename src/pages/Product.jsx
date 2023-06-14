@@ -18,7 +18,6 @@ import axios from "axios"
 import { useLocation } from "react-router"
 import Swal from "sweetalert2"
 import { useNavigate } from "react-router-dom"
-import Modal from "./Modal"
 
 const cardData1 = [
   {
@@ -116,7 +115,6 @@ function Product() {
   return (
     <>
       <Navbar />
-      <Modal />
       <section className="container mt-5 pt-5">
         <div className="row">
           <nav style={{}} aria-label="breadcrumb">
