@@ -50,7 +50,7 @@ function MenuLifeProfile() {
               style={{ cursor: "pointer", fontSize: "14px" }}
             >
               {" "}
-              <HiPencil /> Ubah Profile
+              <HiPencil /> Edit Profile
             </p>
           </div>
         </div>

@@ -5,7 +5,6 @@ import ItemCheckOut from "../component/ItemCheckOut"
 
 import axios from "axios"
 import { useLocation } from "react-router"
-import Swal from "sweetalert2"
 import { useNavigate } from "react-router-dom"
 
 function CheckOut() {
@@ -38,7 +37,35 @@ function CheckOut() {
       })
   }, [])
 
-  console.log(address)
+  const handleRupiah = (price) => {
+    let priceString = price
+    let sisa = priceString?.length % 3
+    let rupiah = priceString?.substr(0, sisa)
+    let ribuan = priceString?.substr(sisa).match(/\d{3}/g)
+    if (ribuan) {
+      let separator = sisa ? "." : ""
+      rupiah += separator + ribuan.join(".")
+      return rupiah
+    }
+  }
+
+  const handleBuy = () => {
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/orders/`, {
+        product_id: product.id,
+        user_id: localStorage.getItem("user_id"),
+        quantity: "1",
+        paymentmethod: "GoPay",
+        address_id: "1",
+        total: "100000",
+        paymentstatus: "Not yet paid",
+        orderstatus: "",
+      })
+      .then((response) => setProduct(response?.data?.data[0]))
+      .catch((err) => {
+        console.log("error :", err)
+      })
+  }
 
   return (
     <div className="">
@@ -59,14 +86,12 @@ function CheckOut() {
                 style={{ width: "90%" }}
               >
                 <div className="card-body">
-                  {address.length > 0
-                    ? `<h5 className="card-title text-start">Andreas Jane</h5>
+                  <h5 className="card-title text-start">Andreas Jane</h5>
                   <p className="card-text text-start">
                     Perumahan Sapphire Mediterania, Wiradadi, Kec. Sokaraja,
                     Kabupaten Banyumas, Jawa Tengah, 53181 [Tokopedia Note: blok
                     c 16] Sokaraja, Kab. Banyumas, 53181
-                  </p>`
-                    : "You don't have address"}
+                  </p>
 
                   {/* <a href="#" className="btn btn-outline-secondary float-start">
                     Choose another address
@@ -239,16 +264,26 @@ function CheckOut() {
                 <h6>Shopping summary</h6>
                 <div className="d-flex flex-row justify-content-between">
                   <p>Order</p>
-                  <p>$40.0</p>
+                  <p>
+                    Rp{" "}
+                    {handleRupiah(
+                      (parseInt(product.price) * parseInt(quantity)).toString()
+                    )}
+                  </p>
                 </div>
                 <div className="d-flex flex-row justify-content-between">
                   <p>Delivery</p>
-                  <p>$40.0</p>
+                  <p>Rp 20.000</p>
                 </div>
                 <hr />
                 <div className="d-flex flex-row justify-content-between">
                   <p>Shopping summary</p>
-                  <p className="text-danger">$80.0</p>
+                  <p className="text-danger">
+                    Rp{" "}
+                    {handleRupiah(
+                      (parseInt(product.price) + parseInt("20000")).toString()
+                    )}
+                  </p>
                 </div>
 
                 {/* <!-- Button Payment --> */}

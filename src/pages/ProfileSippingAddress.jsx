@@ -5,11 +5,26 @@ import "../style/ProfileSippingAddress.css"
 import Navbar from "../component/Navbar"
 import MenuLifeProfile from "../component/MenuLifeProfile"
 import axios from "axios"
+import Swal from "sweetalert2"
 
 function ProfileSippingAddress() {
   const navigate = useNavigate()
 
   const [address, setAddress] = React.useState([])
+  const [addressas, setAddressas] = React.useState([])
+  const [recipientsname, setRecipientsname] = React.useState([])
+  const [recipientsphonenumber, setRecipientsphonenumber] = React.useState([])
+  const [newaddress, setNewaddress] = React.useState([])
+  const [postalcode, setPostalcode] = React.useState([])
+  const [city, setCity] = React.useState([])
+
+  const [addressasupdate, setAddressasUpdate] = React.useState([])
+  const [recipientsnameupdate, setRecipientsnameUpdate] = React.useState([])
+  const [recipientsphonenumberupdate, setRecipientsphonenumberUpdate] =
+    React.useState([])
+  const [addressupdate, setNewaddressUpdate] = React.useState([])
+  const [postalcodeupdate, setPostalcodeUpdate] = React.useState([])
+  const [cityupdate, setCityUpdate] = React.useState([])
 
   React.useEffect(() => {
     if (!localStorage.getItem("auth")) {
@@ -21,9 +36,68 @@ function ProfileSippingAddress() {
         .then((response) => {
           setAddress(response?.data?.data)
         })
-      console.log(address.length)
     }
   }, [])
+
+  const handleCreateAddress = () => {
+    const user_id = localStorage.getItem("user_id")
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/address`, {
+        addressas,
+        recipientsname,
+        recipientsphonenumber,
+        address: newaddress,
+        postalcode,
+        city,
+        user_id,
+      })
+      .then((response) => {
+        Swal.fire({
+          title: "Create Address Success",
+          text: "Create Address Success",
+          icon: "success",
+        }).then(() => {
+          window.location.href = "./ProfileSippingAddress"
+        })
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "Create Addresss Failed",
+          text: error?.response?.data?.message ?? "Something wrong in our app",
+          icon: "error",
+        })
+      })
+  }
+
+  const handleUpdateAddress = () => {
+    const user_id = localStorage.getItem("user_id")
+    axios
+      .patch(`${process.env.REACT_APP_API_URL}/address/1`, {
+        addressasupdate,
+        recipientsnameupdate,
+        recipientsphonenumberupdate,
+        addressupdate,
+        postalcodeupdate,
+        cityupdate,
+        user_id,
+      })
+      .then((response) => {
+        Swal.fire({
+          title: "Update Address Success",
+          text: "Update Address Success",
+          icon: "success",
+        }).then(() => {
+          window.location.href = "./ProfileSippingAddress"
+        })
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "Update Addresss Failed",
+          text: error?.response?.data?.message ?? "Something wrong in our app",
+          icon: "error",
+        })
+      })
+  }
 
   return (
     <div className="" style={{ backgroundColor: "#eeeeee" }}>
@@ -109,6 +183,7 @@ function ProfileSippingAddress() {
                             class="form-control"
                             id="recipient-name"
                             placeholder="Home"
+                            onChange={(e) => setAddressas(e.target.value)}
                           />
                         </div>
 
@@ -121,6 +196,9 @@ function ProfileSippingAddress() {
                               type="text"
                               class="form-control"
                               aria-label="First name"
+                              onChange={(e) =>
+                                setRecipientsname(e.target.value)
+                              }
                             />
                           </div>
                           <div class="col">
@@ -131,6 +209,9 @@ function ProfileSippingAddress() {
                               type="text"
                               class="form-control"
                               aria-label="Last name"
+                              onChange={(e) =>
+                                setRecipientsphonenumber(e.target.value)
+                              }
                             />
                           </div>
                         </div>
@@ -143,6 +224,7 @@ function ProfileSippingAddress() {
                               type="text"
                               class="form-control"
                               aria-label="First name"
+                              onChange={(e) => setNewaddress(e.target.value)}
                             />
                           </div>
                           <div class="col">
@@ -153,6 +235,7 @@ function ProfileSippingAddress() {
                               type="text"
                               class="form-control"
                               aria-label="Last name"
+                              onChange={(e) => setPostalcode(e.target.value)}
                             />
                           </div>
                         </div>
@@ -165,6 +248,7 @@ function ProfileSippingAddress() {
                               type="text"
                               class="form-control"
                               aria-label="First name"
+                              onChange={(e) => setCity(e.target.value)}
                             />
                           </div>
                         </div>
@@ -174,12 +258,12 @@ function ProfileSippingAddress() {
                           value=""
                           id="flexCheckDefault"
                         />
-                        <label
+                        {/* <label
                           class="form-check-label ms-3 "
                           for="flexCheckDefault"
                         >
                           Make it the primary address
-                        </label>
+                        </label> */}
                       </form>
                     </div>
                     <div class="modal-footer">
@@ -190,7 +274,11 @@ function ProfileSippingAddress() {
                       >
                         Close
                       </button>
-                      <button type="button" class="btn btn-danger px-5">
+                      <button
+                        type="button"
+                        class="btn btn-danger px-5"
+                        // onClick={handleCreateAddress}
+                      >
                         Save
                       </button>
                     </div>
@@ -213,9 +301,186 @@ function ProfileSippingAddress() {
                             to="#"
                             className="text-danger fw-bold"
                             style={{ textDecoration: "none" }}
+                            data-bs-toggle="modal"
+                            data-bs-target={`#address${item.id}`}
                           >
                             Change Address
                           </Link>
+                          <div
+                            class="modal fade"
+                            id={`address${item.id}`}
+                            tabindex="-1"
+                            aria-labelledby="exampleModalLabel"
+                            aria-hidden="true"
+                          >
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5
+                                    class="modal-title text-center"
+                                    id="exampleModalLabel"
+                                  >
+                                    Change Address
+                                  </h5>
+                                  <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                  ></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form>
+                                    <div class="mb-3">
+                                      <label
+                                        for="recipient-name"
+                                        class="col-form-label"
+                                      >
+                                        Save address as (ex : home address,
+                                        office address)
+                                      </label>
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        id="recipient-name"
+                                        placeholder="Home"
+                                        defaultValue={item.addressas}
+                                        onChange={(e) =>
+                                          setAddressasUpdate(e.target.value)
+                                        }
+                                      />
+                                    </div>
+
+                                    <div class="row mb-3">
+                                      <div class="col">
+                                        <label
+                                          for="recipient-name"
+                                          class="col-form-label"
+                                        >
+                                          Recipient’s name
+                                        </label>
+                                        <input
+                                          type="text"
+                                          class="form-control"
+                                          aria-label="First name"
+                                          defaultValue={item.recipientsname}
+                                          onChange={(e) =>
+                                            setRecipientsnameUpdate(
+                                              e.target.value
+                                            )
+                                          }
+                                        />
+                                      </div>
+                                      <div class="col">
+                                        <label
+                                          for="recipient-name"
+                                          class="col-form-label"
+                                        >
+                                          Recipient's telephone number
+                                        </label>
+                                        <input
+                                          type="text"
+                                          class="form-control"
+                                          aria-label="Last name"
+                                          defaultValue={
+                                            item.recipientsphonenumber
+                                          }
+                                          onChange={(e) =>
+                                            setRecipientsphonenumberUpdate(
+                                              e.target.value
+                                            )
+                                          }
+                                        />
+                                      </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                      <div class="col">
+                                        <label
+                                          for="recipient-name"
+                                          class="col-form-label"
+                                        >
+                                          Address
+                                        </label>
+                                        <input
+                                          type="text"
+                                          class="form-control"
+                                          aria-label="First name"
+                                          defaultValue={item.address}
+                                          onChange={(e) =>
+                                            setNewaddressUpdate(e.target.value)
+                                          }
+                                        />
+                                      </div>
+                                      <div class="col">
+                                        <label
+                                          for="recipient-name"
+                                          class="col-form-label"
+                                        >
+                                          Postal code
+                                        </label>
+                                        <input
+                                          type="text"
+                                          class="form-control"
+                                          aria-label="Last name"
+                                          defaultValue={item.postalcode}
+                                          onChange={(e) =>
+                                            setPostalcodeUpdate(e.target.value)
+                                          }
+                                        />
+                                      </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                      <label
+                                        for="recipient-name"
+                                        class="col-form-label"
+                                      >
+                                        City or Subdistrict
+                                      </label>
+                                      <div class="col">
+                                        <input
+                                          type="text"
+                                          class="form-control"
+                                          aria-label="First name"
+                                          defaultValue={item.city}
+                                          onChange={(e) =>
+                                            setCityUpdate(e.target.value)
+                                          }
+                                        />
+                                      </div>
+                                    </div>
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      value=""
+                                      id="flexCheckDefault"
+                                    />
+                                    {/* <label
+                          class="form-check-label ms-3 "
+                          for="flexCheckDefault"
+                        >
+                          Make it the primary address
+                        </label> */}
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button
+                                    type="button"
+                                    class="btn btn-light px-5"
+                                    data-bs-dismiss="modal"
+                                  >
+                                    Close
+                                  </button>
+                                  <button
+                                    type="button"
+                                    class="btn btn-danger px-5"
+                                    // onClick={handleUpdateAddress}
+                                  >
+                                    Save
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </span>
                       )
                     })
