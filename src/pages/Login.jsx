@@ -1,23 +1,14 @@
-import React from "react";
-import mainLogo from "../assets/images/Main Logo.svg";
-import authCSS from "../assets/css/auth.module.css";
-import axios from "axios";
-import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import React from "react"
+import mainLogo from "../assets/images/Main Logo.svg"
+import authCSS from "../assets/css/auth.module.css"
+import axios from "axios"
+import Swal from "sweetalert2"
+import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 function Login() {
-
-    const navigate = useNavigate();
-
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-
-// React.useEffect(() => {
-//     if (localStorage.getItem("auth")) {
-//         navigate("/");
-//     }
-// }, [])
+  const [email, setEmail] = React.useState("")
+  const [password, setPassword] = React.useState("")
 
   const handleLogin = () => {
     axios
@@ -25,27 +16,28 @@ function Login() {
         email: email,
         password: password,
       })
-      .then(() => {
+      .then((response) => {
+        const token = response?.data?.token
+        const user_id = response?.data?.data?.id
         Swal.fire({
           title: "Login Success",
           text: "Login Success, redirect to app...",
           icon: "success",
-        })
-        .then(() => {
-          localStorage.setItem("auth", "true");
-          
+        }).then(() => {
+          localStorage.setItem("auth", "true")
+          localStorage.setItem("token", token)
+          localStorage.setItem("user_id", user_id)
           window.location.href = "/"
-
-        });
+        })
       })
       .catch((error) => {
         Swal.fire({
           title: "Login Failed",
           text: error?.response?.data?.message ?? "Something wrong in our app",
           icon: "error",
-        });
-      });
-  };
+        })
+      })
+  }
 
   return (
     <div>
@@ -54,10 +46,12 @@ function Login() {
           {/* Logo Start */}
           <div className="row">
             <Link to="/">
-            <div className="col d-flex justify-content-center align-items-center">
-              <img src={mainLogo} alt="shopbag" />
-              <h1 className="mt-3 ms-2 fnt-color metropolis-b fs-3">Blanja</h1>
-            </div>
+              <div className="col d-flex justify-content-center align-items-center">
+                <img src={mainLogo} alt="shopbag" />
+                <h1 className="mt-3 ms-2 fnt-color metropolis-b fs-3">
+                  Blanja
+                </h1>
+              </div>
             </Link>
           </div>
           {/* Logo End */}
@@ -75,7 +69,7 @@ function Login() {
               id="v-pills-tab"
               role="tablist"
             >
-              <div className="btn-group w-100 d-flex justify-content-center align-items-center">
+              {/* <div className="btn-group w-100 d-flex justify-content-center align-items-center">
                 <button
                   className={`${authCSS.authButton} nav-left nav-link active`}
                   id="v-pills-customer-tab"
@@ -100,7 +94,7 @@ function Login() {
                 >
                   Seller
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
           {/* Button End */}
@@ -195,10 +189,9 @@ function Login() {
           <div className="row">
             <div className="col d-flex justify-content-center">
               <p>
-                Don't have an account? {" "}
-                
+                Don't have an account?{" "}
                 <Link to="/register">
-                <span className="">Register</span>
+                  <span className="">Register</span>
                 </Link>
               </p>
             </div>
@@ -207,7 +200,7 @@ function Login() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Login;
+export default Login

@@ -19,11 +19,11 @@ function Category({ categoryData }) {
                 </div>
               </Link>
             </div>
-          );
+          )
         })}
       </div>
     </>
-  );
+  )
 }
 
-export default Category;
+export default Category

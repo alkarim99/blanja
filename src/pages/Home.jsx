@@ -1,20 +1,20 @@
-import React from "react";
-import "../assets/App.css";
-import Navbar from "../component/Navbar";
-import Carousel from "../component/Carousel";
-import Carousel1 from "../assets/images/Carrousel 1.png";
-import Carousel2 from "../assets/images/Carrousel 2.png";
-import Category from "../component/Category";
-import categoryImg1 from "../assets/images/Category T-Shirt.png";
-import categoryImg2 from "../assets/images/Category Shorts.png";
-import categoryImg3 from "../assets/images/Category Jacket.png";
-import categoryImg4 from "../assets/images/Category Pants.png";
-import categoryImg5 from "../assets/images/Category Shoes.png";
-import categoryImg6 from "../assets/images/Category Glasses.png";
-import { useNavigate } from "react-router-dom";
-import Card from "../component/Card";
-import axios from "axios";
-import ContentCategory from "../component/ContentCategory";
+import React from "react"
+import "../assets/App.css"
+import Navbar from "../component/Navbar"
+import Carousel from "../component/Carousel"
+import Carousel1 from "../assets/images/Carrousel 1.png"
+import Carousel2 from "../assets/images/Carrousel 2.png"
+import Category from "../component/Category"
+import categoryImg1 from "../assets/images/Category T-Shirt.png"
+import categoryImg2 from "../assets/images/Category Shorts.png"
+import categoryImg3 from "../assets/images/Category Jacket.png"
+import categoryImg4 from "../assets/images/Category Pants.png"
+import categoryImg5 from "../assets/images/Category Shoes.png"
+import categoryImg6 from "../assets/images/Category Glasses.png"
+import { useNavigate } from "react-router-dom"
+import Card from "../component/Card"
+import axios from "axios"
+import ContentCategory from "../component/ContentCategory"
 
 const categoryData = [
   {
@@ -51,14 +51,14 @@ const categoryData = [
     categoryImg: categoryImg6,
     categoryColor: "#5086d8",
   },
-];
+]
 
 const dataCarousel = [
   {
     carouselImg: Carousel1,
   },
   {
-    carouselImg: Carousel1,
+    carouselImg: Carousel2,
   },
   {
     carouselImg: Carousel1,
@@ -66,37 +66,30 @@ const dataCarousel = [
   {
     carouselImg: Carousel2,
   },
-];
+]
 
 function App() {
-  const [listNewProduct, SetListNewProduct] = React.useState([]);
-  const [listPopular, SetListPopular] = React.useState([]);
-  // const navigate = useNavigate();
+  const [listNewProduct, SetListNewProduct] = React.useState([])
+  const [listPopular, SetListPopular] = React.useState([])
 
-  // React.useEffect(() => {
-  //     if(!localStorage.getItem("auth")){
-  //         navigate("/login")
-  //     }
-  // }, [])
-  
   React.useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/products?sortType=ASC&page=1`)
       .then((response) => {
-        SetListNewProduct(response?.data?.data);
+        SetListNewProduct(response?.data?.data)
       })
       .catch((error) => {
-        console.log(error);
-      });
+        console.log(error)
+      })
     axios
       .get(`${process.env.REACT_APP_API_URL}/products?sortType=DESC&page=1`)
       .then((response) => {
-        SetListPopular(response?.data?.data);
+        SetListPopular(response?.data?.data)
       })
       .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+        console.log(error)
+      })
+  }, [])
 
   return (
     <div className="App">
@@ -128,7 +121,7 @@ function App() {
                   productpictures={item.productpictures}
                   id={item.id}
                 />
-              );
+              )
             })}
           </div>
         </section>
@@ -136,7 +129,7 @@ function App() {
           <h2 className="metropolis-b">Popular</h2>
           <span>Find clothes that are trending recently</span>
           <div className="row g-4 align-items-center">
-          {listPopular.map((item) => {
+            {listPopular.map((item) => {
               return (
                 <ContentCategory
                   title={item.title}
@@ -145,14 +138,14 @@ function App() {
                   productpictures={item.productpictures}
                   id={item.id}
                 />
-              );
+              )
             })}
           </div>
         </section>
       </main>
       {/* ending Home */}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

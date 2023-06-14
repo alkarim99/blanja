@@ -1,47 +1,46 @@
-import React from 'react'
-import authCSS from "../assets/css/auth.module.css";
-import mainLogo from "../assets/images/Main Logo.svg";
-import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import React from "react"
+import authCSS from "../assets/css/auth.module.css"
+import mainLogo from "../assets/images/Main Logo.svg"
+import { Link } from "react-router-dom"
+import Swal from "sweetalert2"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
 function Register() {
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
-    const [fullName, setFullName] = React.useState("")
-    const [email, setEmail] = React.useState("")
-    const [password, setPassword] = React.useState("");
+  const [fullName, setFullName] = React.useState("")
+  const [email, setEmail] = React.useState("")
+  const [password, setPassword] = React.useState("")
 
-    const handleRegistration = () => {
-        axios
-          .post(`${process.env.REACT_APP_API_URL}/users`, {
-            email: email,
-            fullname: fullName,
-            password: password,
-          })
-          .then((response) => {
-            Swal.fire({
-              title: "Registration Success!",
-              text: "Registration Success! Please Login",
-              icon: "success",
-            }).then(() => {
-              navigate("/login")
-            })
-          })
-          .catch((error) => {
-            Swal.fire({
-              title: "Error!",
-              text: error?.response?.data?.message ?? "Something wrong in our App!",
-              icon: "error",
-            })
-          })
-      }
+  const handleRegistration = () => {
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/users`, {
+        email: email,
+        fullname: fullName,
+        password: password,
+      })
+      .then((response) => {
+        Swal.fire({
+          title: "Registration Success!",
+          text: "Registration Success! Please Login",
+          icon: "success",
+        }).then(() => {
+          navigate("/login")
+        })
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "Error!",
+          text: error?.response?.data?.message ?? "Something wrong in our App!",
+          icon: "error",
+        })
+      })
+  }
 
-    return (
-        <div>
-
-             <div className="d-flex vh-100 align-items-center">
+  return (
+    <div>
+      <div className="d-flex vh-100 align-items-center">
         <div className="container d-inline">
           {/* Logo Start */}
           <div className="row">
@@ -69,7 +68,7 @@ function Register() {
               id="v-pills-tab"
               role="tablist"
             >
-              <div className="btn-group w-100 d-flex justify-content-center align-items-center">
+              {/* <div className="btn-group w-100 d-flex justify-content-center align-items-center">
                 <button
                   className={`${authCSS.authButton} nav-link active nav-left`}
                   id="v-pills-customer-tab"
@@ -94,7 +93,7 @@ function Register() {
                 >
                   Seller
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
           {/* Button End */}
@@ -214,8 +213,10 @@ function Register() {
           {/* Button Start */}
           <div className="row mb-4 justify-content-center">
             <div className="col-lg-4 d-flex justify-content-center">
-              <button className="btn btn-primary rounded-pill w-100"
-              onClick={handleRegistration}>
+              <button
+                className="btn btn-primary rounded-pill w-100"
+                onClick={handleRegistration}
+              >
                 Create Account
               </button>
             </div>
@@ -235,9 +236,8 @@ function Register() {
           {/* Register End */}
         </div>
       </div>
-
-        </div>
-    )
+    </div>
+  )
 }
 
 export default Register

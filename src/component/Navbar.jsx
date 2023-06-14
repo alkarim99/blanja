@@ -1,13 +1,13 @@
-import React from "react";
-import navbarCSS from "../assets/css/navbar.module.css";
-import mainLogo from "../assets/images/Main Logo.svg";
-import iconShop from "../assets/images/Icon Shop.svg";
-import iconBell from "../assets/images/Icon Bell.svg";
-import iconMail from "../assets/images/Icon Mail.svg";
-import iconFilter from "../assets/images/Icon Filter.svg";
-import profileImage from "../assets/images/Profile Image.png";
-import { Link } from "react-router-dom";
-import Modal from "./Modal";
+import React from "react"
+import navbarCSS from "../assets/css/navbar.module.css"
+import mainLogo from "../assets/images/Main Logo.svg"
+import iconShop from "../assets/images/Icon Shop.svg"
+import iconBell from "../assets/images/Icon Bell.svg"
+import iconMail from "../assets/images/Icon Mail.svg"
+import iconFilter from "../assets/images/Icon Filter.svg"
+import profileImage from "../assets/images/Profile Image.png"
+import { Link } from "react-router-dom"
+import Modal from "./Modal"
 
 function Navbar() {
   return (
@@ -15,7 +15,7 @@ function Navbar() {
       <Modal />
       <nav className="navbar fixed-top navbar-expand-lg bg-white shadow">
         <div className="container">
-        <Link
+          <Link
             className="navbar-brand d-flex justify-content-center align-items-center"
             to="/"
           >
@@ -71,7 +71,7 @@ function Navbar() {
                     <Link to="#">
                       <img src={iconMail} className="me-4" alt="Cart" />
                     </Link>
-                    <Link to="#">
+                    <Link to="/profile">
                       <img
                         src={profileImage}
                         className="me-4 rounded-circle"
@@ -80,15 +80,16 @@ function Navbar() {
                       />
                     </Link>
                   </div>
-                    <Link
-                      className={`${navbarCSS.navbarButton} btn btn-primary rounded-pill`}
-                      onClick={() => {
-                        localStorage.clear();
-  
-                        window.location.href = "/login"; }}
-                    >
-                      Logout
-                    </Link>
+                  <Link
+                    className={`${navbarCSS.navbarButton} btn btn-primary rounded-pill`}
+                    onClick={() => {
+                      localStorage.clear()
+
+                      window.location.href = "/login"
+                    }}
+                  >
+                    Logout
+                  </Link>
                 </>
               ) : (
                 <>
@@ -116,7 +117,7 @@ function Navbar() {
         </div>
       </nav>
     </div>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar
