@@ -41,6 +41,18 @@ function ProfileMyOrder() {
     }
   }
 
+  const handleUpdateStatus = (orderid, id) => {
+    console.log(orderid)
+    axios
+      .get(`https://api.sandbox.midtrans.com/v2/${orderid}/status`)
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((err) => {
+        console.log("error :", err)
+      })
+  }
+
   return (
     <div className="" style={{ backgroundColor: "#eeeeee" }}>
       {/* Navbar */}
@@ -103,6 +115,7 @@ function ProfileMyOrder() {
                   <th scope="col">Payment Status</th>
                   <th scope="col">Order Status</th>
                   <th scope="col">Total</th>
+                  <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -113,6 +126,17 @@ function ProfileMyOrder() {
                       <td>{item.paymentstatus}</td>
                       <td>{item.orderstatus}</td>
                       <td>Rp {handleRupiah(item.total)}</td>
+                      <td>
+                        <button
+                          className="btn btn-success"
+                          onClick={handleUpdateStatus(
+                            item.paymentmethod,
+                            item.id
+                          )}
+                        >
+                          Check Status
+                        </button>
+                      </td>
                     </tr>
                   )
                 })}

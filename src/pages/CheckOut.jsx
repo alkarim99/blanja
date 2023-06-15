@@ -67,11 +67,27 @@ function CheckOut() {
     const order_id = uuidv4()
     setOrderid(order_id)
     axios
+      .post(`${process.env.REACT_APP_API_URL}/orders/`, {
+        product_id: product.id,
+        user_id: localStorage.getItem("user_id"),
+        quantity,
+        paymentmethod: `INNOVIXTECH-${order_id}`,
+        address_id: address.id,
+        total:
+          parseInt(product?.price) * parseInt(quantity) + parseInt("20000"),
+        paymentstatus: "Not yet paid",
+        orderstatus: "",
+      })
+      .then((response) => setProduct(response?.data?.data[0]))
+      .catch((err) => {
+        console.log("error :", err)
+      })
+    axios
       .post(`${process.env.REACT_APP_API_URL}/payment`, {
         transaction_details: {
           order_id: `INNOVIXTECH-${order_id}`,
           gross_amount:
-            parseInt(product.price) * parseInt(quantity) + parseInt("20000"),
+            parseInt(product?.price) * parseInt(quantity) + parseInt("20000"),
         },
         credit_card: {
           secure: true,
@@ -86,29 +102,6 @@ function CheckOut() {
       .then((response) => {
         window.snap.pay(response?.data?.token)
       })
-  }
-
-  const handleBuy = () => {
-    axios
-      .get(`https://api.sandbox.midtrans.com/v2/${orderid}/status`)
-      .then((response) => {
-        console.log(response)
-      })
-    // axios
-    //   .post(`${process.env.REACT_APP_API_URL}/orders/`, {
-    //     product_id: product.id,
-    //     user_id: localStorage.getItem("user_id"),
-    //     quantity: "1",
-    //     paymentmethod: "GoPay",
-    //     address_id: "1",
-    //     total: "100000",
-    //     paymentstatus: "Not yet paid",
-    //     orderstatus: "",
-    //   })
-    //   .then((response) => setProduct(response?.data?.data[0]))
-    //   .catch((err) => {
-    //     console.log("error :", err)
-    //   })
   }
 
   return (
