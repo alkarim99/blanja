@@ -60,7 +60,10 @@ function ProfileMyOrder() {
 
       <div className="container-fluide d-flex ProfileBg">
         {/* control Profile lift */}
-        <MenuLifeProfile fullname={profile.fullname} />
+        <MenuLifeProfile
+          fullname={profile.fullname}
+          profilepicture={profile.profilepicture}
+        />
 
         {/* Control Profile right */}
         <div

@@ -8,7 +8,7 @@ import { VscAccount } from "react-icons/vsc"
 import axios from "axios"
 
 function MenuLifeProfile(props) {
-  const { fullname } = props
+  const { fullname, profilepicture } = props
   const navigate = useNavigate()
   // const [profile, setProfile] = React.useState("")
 
@@ -32,7 +32,7 @@ function MenuLifeProfile(props) {
       >
         <div className="d-flex MenuFotoLife">
           <img
-            src="../images/fotoProfile.png"
+            src={profilepicture}
             className="ImgProfileLife ms-5 mt-5"
             alt="Foto PRofile"
           />
@@ -44,7 +44,8 @@ function MenuLifeProfile(props) {
               style={{ cursor: "pointer", fontSize: "14px" }}
             >
               {" "}
-              <HiPencil /> Edit Profile
+              <HiPencil />
+              <Link to="/Profile">Edit Profile</Link>
             </p>
           </div>
         </div>

@@ -19,6 +19,7 @@ function ProfileSippingAddress() {
   const [postalcode, setPostalcode] = React.useState([])
   const [city, setCity] = React.useState([])
 
+  const [idupdate, setIdupdate] = React.useState([])
   const [addressasupdate, setAddressasUpdate] = React.useState([])
   const [recipientsnameupdate, setRecipientsnameUpdate] = React.useState([])
   const [recipientsphonenumberupdate, setRecipientsphonenumberUpdate] =
@@ -75,10 +76,10 @@ function ProfileSippingAddress() {
       })
   }
 
-  const handleUpdateAddress = (addressid) => {
+  const handleUpdateAddress = () => {
     const user_id = localStorage.getItem("user_id")
     axios
-      .patch(`${process.env.REACT_APP_API_URL}/address/${addressid}`, {
+      .patch(`${process.env.REACT_APP_API_URL}/address/${idupdate}`, {
         addressasupdate,
         recipientsnameupdate,
         recipientsphonenumberupdate,
@@ -112,7 +113,10 @@ function ProfileSippingAddress() {
 
       <div className="container-fluide d-flex ProfileBg">
         {/* control Profile lift */}
-        <MenuLifeProfile fullname={profile.fullname} />
+        <MenuLifeProfile
+          fullname={profile.fullname}
+          profilepicture={profile.profilepicture}
+        />
 
         {/* Control Profile right */}
         <div
@@ -351,9 +355,10 @@ function ProfileSippingAddress() {
                                         id="recipient-name"
                                         placeholder="Home"
                                         defaultValue={item.addressas}
-                                        onChange={(e) =>
+                                        onChange={(e) => {
                                           setAddressasUpdate(e.target.value)
-                                        }
+                                          setIdupdate(item.id)
+                                        }}
                                       />
                                     </div>
 
@@ -370,11 +375,12 @@ function ProfileSippingAddress() {
                                           class="form-control"
                                           aria-label="First name"
                                           defaultValue={item.recipientsname}
-                                          onChange={(e) =>
+                                          onChange={(e) => {
                                             setRecipientsnameUpdate(
                                               e.target.value
                                             )
-                                          }
+                                            setIdupdate(item.id)
+                                          }}
                                         />
                                       </div>
                                       <div class="col">
@@ -391,11 +397,12 @@ function ProfileSippingAddress() {
                                           defaultValue={
                                             item.recipientsphonenumber
                                           }
-                                          onChange={(e) =>
+                                          onChange={(e) => {
                                             setRecipientsphonenumberUpdate(
                                               e.target.value
                                             )
-                                          }
+                                            setIdupdate(item.id)
+                                          }}
                                         />
                                       </div>
                                     </div>
@@ -412,9 +419,10 @@ function ProfileSippingAddress() {
                                           class="form-control"
                                           aria-label="First name"
                                           defaultValue={item.address}
-                                          onChange={(e) =>
+                                          onChange={(e) => {
                                             setNewaddressUpdate(e.target.value)
-                                          }
+                                            setIdupdate(item.id)
+                                          }}
                                         />
                                       </div>
                                       <div class="col">
@@ -429,9 +437,10 @@ function ProfileSippingAddress() {
                                           class="form-control"
                                           aria-label="Last name"
                                           defaultValue={item.postalcode}
-                                          onChange={(e) =>
+                                          onChange={(e) => {
                                             setPostalcodeUpdate(e.target.value)
-                                          }
+                                            setIdupdate(item.id)
+                                          }}
                                         />
                                       </div>
                                     </div>
@@ -448,9 +457,10 @@ function ProfileSippingAddress() {
                                           class="form-control"
                                           aria-label="First name"
                                           defaultValue={item.city}
-                                          onChange={(e) =>
+                                          onChange={(e) => {
                                             setCityUpdate(e.target.value)
-                                          }
+                                            setIdupdate(item.id)
+                                          }}
                                         />
                                       </div>
                                     </div>
@@ -479,7 +489,7 @@ function ProfileSippingAddress() {
                                   <button
                                     type="button"
                                     class="btn btn-danger px-5"
-                                    // onClick={handleUpdateAddress}
+                                    onClick={handleUpdateAddress}
                                   >
                                     Save
                                   </button>

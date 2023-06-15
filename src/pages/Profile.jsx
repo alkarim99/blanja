@@ -1,3 +1,4 @@
+import FormData from "form-data"
 import React from "react"
 
 import { Link, useNavigate } from "react-router-dom"
@@ -12,6 +13,7 @@ import MenuLifeProfile from "../component/MenuLifeProfile"
 function Profile() {
   const navigate = useNavigate()
   const [profile, setProfile] = React.useState([])
+  const [profilepicture, setProfilepicture] = React.useState([])
   const [fullname, setFullname] = React.useState([])
   const [email, setEmail] = React.useState([])
   const [phonenumber, setPhonenumber] = React.useState([])
@@ -63,6 +65,34 @@ function Profile() {
       })
   }
 
+  const handleUpdateProfilePicture = () => {
+    const formData = new FormData()
+    formData.append("photo", profilepicture)
+    axios
+      .patch(`${process.env.REACT_APP_API_URL}/users/photo`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        Swal.fire({
+          title: "Success Update Profile Picture!",
+          text: "Success Update Profile Picture!",
+          icon: "success",
+        }).then(() => {
+          window.location.href = "/profile"
+        })
+      })
+      .catch((error) => {
+        console.log(error)
+        Swal.fire({
+          title: "Error!",
+          text: error?.response?.data?.message ?? "Something wrong in our App!",
+          icon: "error",
+        })
+      })
+  }
+
   return (
     <div className="" style={{ backgroundColor: "#eeeeee" }}>
       {/* Navbar */}
@@ -70,7 +100,10 @@ function Profile() {
 
       <div className="container-fluide d-flex ProfileBg">
         {/* control Profile lift */}
-        <MenuLifeProfile fullname={profile.fullname} />
+        <MenuLifeProfile
+          fullname={profile.fullname}
+          profilepicture={profile.profilepicture}
+        />
 
         {/* Control Profile right */}
         <div
@@ -232,12 +265,19 @@ function Profile() {
               {/* content Right */}
               <div className="d-flex flex-column align-items-center">
                 <img
-                  src="../images/fotoProfile.png"
+                  src={profile.profilepicture}
                   className="ImgProfileRight mb-3"
                   alt="Foto Profile"
                 />
-                <input type="file" />
-                <button type="button" class="btn btn-outline-secondary">
+                <input
+                  type="file"
+                  onChange={(e) => setProfilepicture(e.target.files[0])}
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary"
+                  onClick={handleUpdateProfilePicture}
+                >
                   Update image
                 </button>
               </div>
