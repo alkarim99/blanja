@@ -75,10 +75,10 @@ function ProfileSippingAddress() {
       })
   }
 
-  const handleUpdateAddress = () => {
+  const handleUpdateAddress = (addressid) => {
     const user_id = localStorage.getItem("user_id")
     axios
-      .patch(`${process.env.REACT_APP_API_URL}/address/1`, {
+      .patch(`${process.env.REACT_APP_API_URL}/address/${addressid}`, {
         addressasupdate,
         recipientsnameupdate,
         recipientsphonenumberupdate,
@@ -283,7 +283,7 @@ function ProfileSippingAddress() {
                       <button
                         type="button"
                         class="btn btn-danger px-5"
-                        // onClick={handleCreateAddress}
+                        onClick={handleCreateAddress}
                       >
                         Save
                       </button>

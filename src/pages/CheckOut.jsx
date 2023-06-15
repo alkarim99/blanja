@@ -64,30 +64,15 @@ function CheckOut() {
   }
 
   const handlePay = () => {
+    const total =
+      parseInt(product?.price) * parseInt(quantity) + parseInt("20000")
     const order_id = uuidv4()
     setOrderid(order_id)
-    axios
-      .post(`${process.env.REACT_APP_API_URL}/orders/`, {
-        product_id: product.id,
-        user_id: localStorage.getItem("user_id"),
-        quantity,
-        paymentmethod: `INNOVIXTECH-${order_id}`,
-        address_id: address.id,
-        total:
-          parseInt(product?.price) * parseInt(quantity) + parseInt("20000"),
-        paymentstatus: "Not yet paid",
-        orderstatus: "",
-      })
-      .then((response) => setProduct(response?.data?.data[0]))
-      .catch((err) => {
-        console.log("error :", err)
-      })
     axios
       .post(`${process.env.REACT_APP_API_URL}/payment`, {
         transaction_details: {
           order_id: `INNOVIXTECH-${order_id}`,
-          gross_amount:
-            parseInt(product?.price) * parseInt(quantity) + parseInt("20000"),
+          gross_amount: total,
         },
         credit_card: {
           secure: true,
@@ -101,6 +86,21 @@ function CheckOut() {
       })
       .then((response) => {
         window.snap.pay(response?.data?.token)
+      })
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/orders/`, {
+        product_id: product.id,
+        user_id: localStorage.getItem("user_id"),
+        quantity,
+        paymentmethod: `INNOVIXTECH-${order_id}`,
+        address_id: address.id,
+        total,
+        paymentstatus: "Not yet paid",
+        orderstatus: "",
+      })
+      .then((response) => console.log(response))
+      .catch((err) => {
+        console.log("error :", err)
       })
   }
 

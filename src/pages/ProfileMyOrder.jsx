@@ -104,7 +104,7 @@ function ProfileMyOrder() {
               </li>
               <li class="nav-item ">
                 <a class="nav-link text-muted" href="#">
-                  Ordre cancel
+                  Order cancel
                 </a>
               </li>
             </ul>
@@ -115,7 +115,7 @@ function ProfileMyOrder() {
                   <th scope="col">Payment Status</th>
                   <th scope="col">Order Status</th>
                   <th scope="col">Total</th>
-                  <th scope="col">Action</th>
+                  {/* <th scope="col">Action</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -126,7 +126,7 @@ function ProfileMyOrder() {
                       <td>{item.paymentstatus}</td>
                       <td>{item.orderstatus}</td>
                       <td>Rp {handleRupiah(item.total)}</td>
-                      <td>
+                      {/* <td>
                         <button
                           className="btn btn-success"
                           onClick={handleUpdateStatus(
@@ -136,7 +136,7 @@ function ProfileMyOrder() {
                         >
                           Check Status
                         </button>
-                      </td>
+                      </td> */}
                     </tr>
                   )
                 })}
