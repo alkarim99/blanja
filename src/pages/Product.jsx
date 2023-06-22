@@ -265,11 +265,11 @@ function Product() {
           <h2 className="metropolis-b">Informasi Produk</h2>
         </div>
         <div className="row mb-3">
-          <h3 className="metropolis-b">Condition</h3>
-          <h4 className="metropolis-b text-danger">New</h4>
+          <h4 className="metropolis-b">Condition</h4>
+          <h5 className="metropolis-b text-danger">New</h5>
         </div>
         <div className="row mb-3">
-          <h3 className="metropolis-b">Description</h3>
+          <h4 className="metropolis-b">Description</h4>
           <p>{product.description}</p>
         </div>
         {/* <div className="row">
