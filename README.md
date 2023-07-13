@@ -90,7 +90,7 @@ npm run build
 
 # Screenshots
 
-<img width="840" src="./documentation/3-devices-black.png" border="0" alt="Landing Page" />
+<img width="840" src="./documentation/all-devices-black.png" border="0" alt="Landing Page" />
 <br>
 
 <table>
