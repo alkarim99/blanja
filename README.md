@@ -122,14 +122,14 @@ npm run build
     <td><img width="350px" src="./documentation/payment.png" border="0" alt="Detail Talent" /> </td>
   </tr>
    <tr>
-    <td>Payment</td>
     <td>Checkout</td>
+    <td>Payment</td>
 </table>
 
 # Related Project
 
-:rocket: [`Frontend Peworld`](https://github.com/abubakar-adeni/hirejob_fe)
+:rocket: [`Frontend Blanja`](https://github.com/abubakar-adeni/blanja/tree/main)
 
-:rocket: [`Backend Peworld`](https://github.com/kubil-ismail/hire_job_be)
+:rocket: [`Backend Blanja`](https://github.com/alkarim99/blanja-app-be)
 
-:rocket: [`Demo Peworld`](https://hirejob-fe-tqqw.vercel.app/)
+:rocket: [`Demo Blanja`](https://blanja-fe-zeta.vercel.app/)
