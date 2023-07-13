@@ -1,8 +1,7 @@
 <br />
 <p align="center">
   <div align="center">
-    <img src="./blanja/src/assets/images
-/Main Logo.svg" alt="shopbag">
+    <img src="./src/assets/images/Main Logo.svg" alt="shopbag">
   </div>
   <h3 align="center">Blanja (Blanja App)</h3>
   <p align="center">
