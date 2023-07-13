@@ -54,7 +54,7 @@ Follow this steps to run the server locally
 1. Clone this repository
 
 ```sh
-git clone https://github.com/abubakar-adeni/hirejob_fe.git
+git clone https://github.com/abubakar-adeni/blanja.git
 ```
 
 2. Change directory to hirejob-frontend
@@ -127,7 +127,7 @@ npm run build
 
 # Related Project
 
-:rocket: [`Frontend Blanja`](https://github.com/abubakar-adeni/blanja/tree/main)
+:rocket: [`Frontend Blanja`](https://github.com/abubakar-adeni/blanja)
 
 :rocket: [`Backend Blanja`](https://github.com/alkarim99/blanja-app-be)
 
