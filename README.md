@@ -1,70 +1,128 @@
-# Getting Started with Create React App
+<br />
+<p align="center">
+  <div align="center">
+    <img src="/static/media/Main Logo.48ffb029a497121e965e50c31c81c760.svg" alt="shopbag">
+  </div>
+  <h3 align="center">Blanja (Blanja App)</h3>
+  <p align="center">
+    <a href="https://github.com/abubakar-adeni/blanja"><strong>Explore the docs »</strong></a>
+    <br />
+    <a href="https://blanja-fe-zeta.vercel.app/">View Demo</a>
+  </p>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
 
-## Available Scripts
+- [About The Project](#about-the-project)
+  - [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Screenshots](#screenshots)
+- [Related Project](#related-project)
 
-In the project directory, you can run:
+# About The Project
 
-### `npm start`
+Peworld is a hiring website to make it easier to connect workers with recruiters. Workers can create an account and display portfolios, work experiences, and skills on this website. Recruiters can create an account for searching and hiring workers based on company needs. Workers will be notified if they are hired by recruiter.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Built With
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+These are the libraries and service used for building this backend API
 
-### `npm test`
+- ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+- ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+- ![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
+- ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
+- ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+- ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+- [Sweetalert2](https://sweetalert2.github.io)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Getting Started
 
-### `npm run build`
+## Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+You'll need these programs installed before proceeding to installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [Git](https://git-scm.com/downloads)
+- [Node.js](https://nodejs.org/en/download)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This project requires [peworld-be](https://github.com/ikkair/peworld-be) to function properly, follow the steps provided in the readme to install and run the backend API
 
-### `npm run eject`
+## Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Follow this steps to run the server locally
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone this repository
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```sh
+git clone https://github.com/abubakar-adeni/hirejob_fe.git
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. Change directory to hirejob-frontend
 
-## Learn More
+```sh
+cd hirejob_fe
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. Install all of the required modules
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```sh
+npm install
+```
 
-### Code Splitting
+4. Create and configure `.env.local` file in the root directory, example env are provided in [.env.local.example](./.env.local.example)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```env
+NEXT_PUBLIC_HOST=[ Backend URL ]
+```
 
-### Analyzing the Bundle Size
+5. Run this command to run the server in development environment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```sh
+npm run start
+```
 
-### Making a Progressive Web App
+- Run this command to build this website into production ready
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```sh
+npm run build
+```
 
-### Advanced Configuration
+# Screenshots
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<img width="840" src="./documentation/3-devices-black.png" border="0" alt="Landing Page" />
+<br>
 
-### Deployment
+<table>
+ <tr>
+    <td><img width="350px" src="./documentation/login.png" border="0" alt="Login" /></td>
+    <td> <img width="350px" src="./documentation/register.png" border="0"  alt="Register" /></td>
+  </tr>
+  <tr>
+    <td>Login</td>
+    <td>Register</td>
+  </tr>
+  <tr>
+    <td><img width="350px" src="./documentation/profile.png" border="0" alt="Profile" /> </td>
+    <td><img width="350px" src="./documentation/hire.png" border="0" alt="Hire" /> </td>
+  </tr>
+   <tr>
+    <td>Edit Profile</td>
+    <td>Hire</td>
+  </tr>
+  <tr>
+    <td><img width="350px" src="./documentation/search.png" border="0" alt="Search" /></td>
+    <td><img width="350px" src="./documentation/detail.png" border="0" alt="Detail Talent" /> </td>
+  </tr>
+   <tr>
+    <td>Search</td>
+    <td>Detail Talent</td>
+</table>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+# Related Project
 
-### `npm run build` fails to minify
+:rocket: [`Frontend Peworld`](https://github.com/abubakar-adeni/hirejob_fe)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+:rocket: [`Backend Peworld`](https://github.com/kubil-ismail/hire_job_be)
+
+:rocket: [`Demo Peworld`](https://hirejob-fe-tqqw.vercel.app/)
