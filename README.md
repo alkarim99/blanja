@@ -104,11 +104,11 @@ npm run build
   </tr>
   <tr>
     <td><img width="350px" src="./documentation/profile.png" border="0" alt="Profile" /> </td>
-    <td><img width="350px" src="./documentation/hire.png" border="0" alt="Hire" /> </td>
+    <td><img width="350px" src="./documentation/product.png" border="0" alt="Hire" /> </td>
   </tr>
    <tr>
     <td>Edit Profile</td>
-    <td>Hire</td>
+    <td>Product Pages</td>
   </tr>
   <tr>
     <td><img width="350px" src="./documentation/search.png" border="0" alt="Search" /></td>
@@ -116,7 +116,14 @@ npm run build
   </tr>
    <tr>
     <td>Search</td>
-    <td>Detail Talent</td>
+    <td>Detail Product</td>
+      <tr>
+    <td><img width="350px" src="./documentation/checkout.png" border="0" alt="Search" /></td>
+    <td><img width="350px" src="./documentation/payment.png" border="0" alt="Detail Talent" /> </td>
+  </tr>
+   <tr>
+    <td>Payment</td>
+    <td>Checkout</td>
 </table>
 
 # Related Project
