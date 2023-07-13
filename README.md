@@ -57,10 +57,10 @@ Follow this steps to run the server locally
 git clone https://github.com/abubakar-adeni/blanja.git
 ```
 
-2. Change directory to hirejob-frontend
+2. Change directory to blanja
 
 ```sh
-cd hirejob_fe
+cd blanja
 ```
 
 3. Install all of the required modules
