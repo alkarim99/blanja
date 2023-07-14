@@ -45,7 +45,7 @@ You'll need these programs installed before proceeding to installation
 - [Git](https://git-scm.com/downloads)
 - [Node.js](https://nodejs.org/en/download)
 
-This project requires [peworld-be](https://github.com/ikkair/peworld-be) to function properly, follow the steps provided in the readme to install and run the backend API
+This project requires [blanja-app-be](https://github.com/alkarim99/blanja-app-be) to function properly, follow the steps provided in the readme to install and run the backend API
 
 ## Installation
 
