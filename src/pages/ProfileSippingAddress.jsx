@@ -12,11 +12,11 @@ function ProfileSippingAddress() {
 
   const [profile, setProfile] = React.useState([])
   const [address, setAddress] = React.useState([])
-  const [addressas, setAddressas] = React.useState([])
-  const [recipientsname, setRecipientsname] = React.useState([])
-  const [recipientsphonenumber, setRecipientsphonenumber] = React.useState([])
+  const [address_as, setAddressas] = React.useState([])
+  const [recipients_name, setRecipientsname] = React.useState([])
+  const [recipients_phone_number, setRecipientsphonenumber] = React.useState([])
   const [newaddress, setNewaddress] = React.useState([])
-  const [postalcode, setPostalcode] = React.useState([])
+  const [postal_code, setPostalcode] = React.useState([])
   const [city, setCity] = React.useState([])
 
   const [idupdate, setIdupdate] = React.useState([])
@@ -51,10 +51,10 @@ function ProfileSippingAddress() {
     axios
       .post(`${process.env.REACT_APP_API_URL}/address`, {
         addressas,
-        recipientsname,
-        recipientsphonenumber,
+        recipients_name,
+        recipients_phone_number,
         address: newaddress,
-        postalcode,
+        postal_code,
         city,
         user_id,
       })
