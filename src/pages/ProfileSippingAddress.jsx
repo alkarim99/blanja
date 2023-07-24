@@ -50,7 +50,7 @@ function ProfileSippingAddress() {
     const user_id = localStorage.getItem("user_id")
     axios
       .post(`${process.env.REACT_APP_API_URL}/address`, {
-        addressas,
+        address_as,
         recipients_name,
         recipients_phone_number,
         address: newaddress,
