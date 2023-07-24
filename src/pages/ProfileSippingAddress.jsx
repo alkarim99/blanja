@@ -1,45 +1,50 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "../style/ProfileSippingAddress.css";
-import Navbar from "../component/Navbar";
-import MenuLifeProfile from "../component/MenuLifeProfile";
-import axios from "axios";
-import Swal from "sweetalert2";
+import React from "react"
+import { Link, useNavigate } from "react-router-dom"
+import "../style/ProfileSippingAddress.css"
+import Navbar from "../component/Navbar"
+import MenuLifeProfile from "../component/MenuLifeProfile"
+import axios from "axios"
+import Swal from "sweetalert2"
 
 function ProfileSippingAddress() {
-  const navigate = useNavigate();
-  const [profile, setProfile] = React.useState([]);
-  const [address, setAddress] = React.useState([]);
-  const [address_as, setAddressas] = React.useState([]);
-  const [recipients_name, setRecipientsname] = React.useState([]);
-  const [recipients_phone_number, setRecipientsphonenumber] = React.useState([]);
-  const [newaddress, setNewaddress] = React.useState([]);
-  const [postal_code, setPostalcode] = React.useState([]);
-  const [city, setCity] = React.useState([]);
-  const [idupdate, setIdupdate] = React.useState([]);
-  const [addressasupdate, setAddressasUpdate] = React.useState([]);
-  const [recipientsnameupdate, setRecipientsnameUpdate] = React.useState([]);
-  const [recipientsphonenumberupdate, setRecipientsphonenumberUpdate] = React.useState([]);
-  const [addressupdate, setNewaddressUpdate] = React.useState([]);
-  const [postalcodeupdate, setPostalcodeUpdate] = React.useState([]);
-  const [cityupdate, setCityUpdate] = React.useState([]);
+  const navigate = useNavigate()
+  const [profile, setProfile] = React.useState([])
+  const [address, setAddress] = React.useState([])
+  const [address_as, setAddressas] = React.useState([])
+  const [recipients_name, setRecipientsname] = React.useState([])
+  const [recipients_phone_number, setRecipientsphonenumber] = React.useState([])
+  const [newaddress, setNewaddress] = React.useState([])
+  const [postal_code, setPostalcode] = React.useState([])
+  const [city, setCity] = React.useState([])
+  const [idupdate, setIdupdate] = React.useState([])
+  const [addressasupdate, setAddressasUpdate] = React.useState([])
+  const [recipientsnameupdate, setRecipientsnameUpdate] = React.useState([])
+  const [recipientsphonenumberupdate, setRecipientsphonenumberUpdate] =
+    React.useState([])
+  const [addressupdate, setNewaddressUpdate] = React.useState([])
+  const [postalcodeupdate, setPostalcodeUpdate] = React.useState([])
+  const [cityupdate, setCityUpdate] = React.useState([])
 
   React.useEffect(() => {
     if (!localStorage.getItem("auth")) {
-      navigate("/login");
+      navigate("/login")
     } else {
-      const user_id = localStorage.getItem("user_id");
-      axios.get(`${process.env.REACT_APP_API_URL}/address/user/${user_id}`).then((response) => {
-        setAddress(response?.data?.data);
-      });
-      axios.get(`${process.env.REACT_APP_API_URL}/users/${user_id}`).then((response) => {
-        setProfile(response?.data?.data[0]);
-      });
+      const user_id = localStorage.getItem("user_id")
+      axios
+        .get(`${process.env.REACT_APP_API_URL}/address/user/${user_id}`)
+        .then((response) => {
+          setAddress(response?.data?.data)
+        })
+      axios
+        .get(`${process.env.REACT_APP_API_URL}/users/${user_id}`)
+        .then((response) => {
+          setProfile(response?.data?.data[0])
+        })
     }
-  }, []);
+  }, [])
 
   const handleCreateAddress = () => {
-    const user_id = localStorage.getItem("user_id");
+    const user_id = localStorage.getItem("user_id")
     axios
       .post(`${process.env.REACT_APP_API_URL}/address`, {
         address_as,
@@ -56,20 +61,20 @@ function ProfileSippingAddress() {
           text: "Create Address Success",
           icon: "success",
         }).then(() => {
-          window.location.href = "./ProfileSippingAddress";
-        });
+          window.location.href = "./ProfileSippingAddress"
+        })
       })
       .catch((error) => {
         Swal.fire({
           title: "Create Address Failed",
           text: error?.response?.data?.message ?? "Something wrong in our app",
           icon: "error",
-        });
-      });
-  };
+        })
+      })
+  }
 
   const handleUpdateAddress = () => {
-    const user_id = localStorage.getItem("user_id");
+    const user_id = localStorage.getItem("user_id")
     axios
       .patch(`${process.env.REACT_APP_API_URL}/address/${idupdate}`, {
         address_as: addressasupdate,
@@ -86,17 +91,17 @@ function ProfileSippingAddress() {
           text: "Update Address Success",
           icon: "success",
         }).then(() => {
-          window.location.href = "./ProfileSippingAddress";
-        });
+          window.location.href = "./ProfileSippingAddress"
+        })
       })
       .catch((error) => {
         Swal.fire({
           title: "Update Address Failed",
           text: error?.response?.data?.message ?? "Something wrong in our app",
           icon: "error",
-        });
-      });
-  };
+        })
+      })
+  }
 
   const handleRemoveAddress = (id) => {
     Swal.fire({
@@ -109,7 +114,7 @@ function ProfileSippingAddress() {
       confirmButtonText: "Yes, remove it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        const user_id = localStorage.getItem("user_id");
+        const user_id = localStorage.getItem("user_id")
         axios
           .delete(`${process.env.REACT_APP_API_URL}/address/${id}`, {
             user_id,
@@ -123,20 +128,21 @@ function ProfileSippingAddress() {
               axios
                 .get(`${process.env.REACT_APP_API_URL}/address/user/${user_id}`)
                 .then((response) => {
-                  setAddress(response?.data?.data);
-                });
-            });
+                  setAddress(response?.data?.data)
+                })
+            })
           })
           .catch((error) => {
             Swal.fire({
               title: "Remove Address Failed",
-              text: error?.response?.data?.message ?? "Something wrong in our app",
+              text:
+                error?.response?.data?.message ?? "Something wrong in our app",
               icon: "error",
-            });
-          });
+            })
+          })
       }
-    });
-  };
+    })
+  }
 
   return (
     <div className="" style={{ backgroundColor: "#eeeeee" }}>
@@ -145,7 +151,10 @@ function ProfileSippingAddress() {
 
       <div className="container-fluide d-flex ProfileBg">
         {/* control Profile lift */}
-        <MenuLifeProfile fullname={profile.fullname} profilepicture={profile.profilepicture} />
+        <MenuLifeProfile
+          fullname={profile.fullname}
+          profilepicture={profile.profile_picture}
+        />
 
         {/* Control Profile right */}
         <div
@@ -195,7 +204,10 @@ function ProfileSippingAddress() {
                 <div className="modal-dialog">
                   <div className="modal-content">
                     <div className="modal-header">
-                      <h5 className="modal-title text-center" id="exampleModalLabel">
+                      <h5
+                        className="modal-title text-center"
+                        id="exampleModalLabel"
+                      >
                         Add new Address
                       </h5>
                       <button
@@ -208,7 +220,10 @@ function ProfileSippingAddress() {
                     <div className="modal-body">
                       <form>
                         <div className="mb-3">
-                          <label htmlFor="recipient-name" className="col-form-label">
+                          <label
+                            htmlFor="recipient-name"
+                            className="col-form-label"
+                          >
                             Save address as (ex : home address, office address)
                           </label>
                           <input
@@ -222,31 +237,44 @@ function ProfileSippingAddress() {
 
                         <div className="row mb-3">
                           <div className="col">
-                            <label htmlFor="recipient-name" className="col-form-label">
+                            <label
+                              htmlFor="recipient-name"
+                              className="col-form-label"
+                            >
                               Recipient’s name
                             </label>
                             <input
                               type="text"
                               className="form-control"
                               aria-label="First name"
-                              onChange={(e) => setRecipientsname(e.target.value)}
+                              onChange={(e) =>
+                                setRecipientsname(e.target.value)
+                              }
                             />
                           </div>
                           <div className="col">
-                            <label htmlFor="recipient-name" className="col-form-label">
+                            <label
+                              htmlFor="recipient-name"
+                              className="col-form-label"
+                            >
                               Recipient's telephone number
                             </label>
                             <input
                               type="text"
                               className="form-control"
                               aria-label="Last name"
-                              onChange={(e) => setRecipientsphonenumber(e.target.value)}
+                              onChange={(e) =>
+                                setRecipientsphonenumber(e.target.value)
+                              }
                             />
                           </div>
                         </div>
                         <div className="row mb-3">
                           <div className="col">
-                            <label htmlFor="recipient-name" className="col-form-label">
+                            <label
+                              htmlFor="recipient-name"
+                              className="col-form-label"
+                            >
                               Address
                             </label>
                             <input
@@ -257,7 +285,10 @@ function ProfileSippingAddress() {
                             />
                           </div>
                           <div className="col">
-                            <label htmlFor="recipient-name" className="col-form-label">
+                            <label
+                              htmlFor="recipient-name"
+                              className="col-form-label"
+                            >
                               Postal code
                             </label>
                             <input
@@ -269,7 +300,10 @@ function ProfileSippingAddress() {
                           </div>
                         </div>
                         <div className="row mb-3">
-                          <label htmlFor="recipient-name" className="col-form-label">
+                          <label
+                            htmlFor="recipient-name"
+                            className="col-form-label"
+                          >
                             City or Subdistrict
                           </label>
                           <div className="col">
@@ -314,7 +348,10 @@ function ProfileSippingAddress() {
               <div className="d-flex flex-column mt-4 pb-3">
                 {address?.length > 0 &&
                   address.map((item) => (
-                    <span className="border border-danger my-3 p-4 rounded-2" key={item.id}>
+                    <span
+                      className="border border-danger my-3 p-4 rounded-2"
+                      key={item.id}
+                    >
                       <h6 className="fw-bold">{item.address_as}</h6>
                       <p>
                         {item.address}, {item.city}, {item.postal_code}
@@ -324,13 +361,15 @@ function ProfileSippingAddress() {
                         className="text-danger fw-bold"
                         style={{ textDecoration: "none" }}
                         onClick={() => {
-                          setAddressasUpdate(item.address_as);
-                          setRecipientsnameUpdate(item.recipients_name);
-                          setRecipientsphonenumberUpdate(item.recipients_phone_number);
-                          setNewaddressUpdate(item.address);
-                          setPostalcodeUpdate(item.postal_code);
-                          setCityUpdate(item.city);
-                          setIdupdate(item.id);
+                          setAddressasUpdate(item.address_as)
+                          setRecipientsnameUpdate(item.recipients_name)
+                          setRecipientsphonenumberUpdate(
+                            item.recipients_phone_number
+                          )
+                          setNewaddressUpdate(item.address)
+                          setPostalcodeUpdate(item.postal_code)
+                          setCityUpdate(item.city)
+                          setIdupdate(item.id)
                         }}
                         data-bs-toggle="modal"
                         data-bs-target={`#address${item.id}`}
@@ -347,7 +386,10 @@ function ProfileSippingAddress() {
                         <div className="modal-dialog">
                           <div className="modal-content">
                             <div className="modal-header">
-                              <h5 className="modal-title text-center" id="exampleModalLabel">
+                              <h5
+                                className="modal-title text-center"
+                                id="exampleModalLabel"
+                              >
                                 Change Address
                               </h5>
                               <button
@@ -360,8 +402,12 @@ function ProfileSippingAddress() {
                             <div className="modal-body">
                               <form>
                                 <div className="mb-3">
-                                  <label htmlFor="recipient-name" className="col-form-label">
-                                    Save address as (ex : home address, office address)
+                                  <label
+                                    htmlFor="recipient-name"
+                                    className="col-form-label"
+                                  >
+                                    Save address as (ex : home address, office
+                                    address)
                                   </label>
                                   <input
                                     type="text"
@@ -370,15 +416,18 @@ function ProfileSippingAddress() {
                                     placeholder="Home"
                                     defaultValue={item.address_as}
                                     onChange={(e) => {
-                                      setAddressasUpdate(e.target.value);
-                                      setIdupdate(item.id);
+                                      setAddressasUpdate(e.target.value)
+                                      setIdupdate(item.id)
                                     }}
                                   />
                                 </div>
 
                                 <div className="row mb-3">
                                   <div className="col">
-                                    <label htmlFor="recipient-name" className="col-form-label">
+                                    <label
+                                      htmlFor="recipient-name"
+                                      className="col-form-label"
+                                    >
                                       Recipient’s name
                                     </label>
                                     <input
@@ -387,30 +436,40 @@ function ProfileSippingAddress() {
                                       aria-label="First name"
                                       defaultValue={item.recipients_name}
                                       onChange={(e) => {
-                                        setRecipientsnameUpdate(e.target.value);
-                                        setIdupdate(item.id);
+                                        setRecipientsnameUpdate(e.target.value)
+                                        setIdupdate(item.id)
                                       }}
                                     />
                                   </div>
                                   <div className="col">
-                                    <label htmlFor="recipient-name" className="col-form-label">
+                                    <label
+                                      htmlFor="recipient-name"
+                                      className="col-form-label"
+                                    >
                                       Recipient's telephone number
                                     </label>
                                     <input
                                       type="text"
                                       className="form-control"
                                       aria-label="Last name"
-                                      defaultValue={item.recipients_phone_number}
+                                      defaultValue={
+                                        item.recipients_phone_number
+                                      }
                                       onChange={(e) => {
-                                        setRecipientsphonenumberUpdate(e.target.value);
-                                        setIdupdate(item.id);
+                                        setRecipientsphonenumberUpdate(
+                                          e.target.value
+                                        )
+                                        setIdupdate(item.id)
                                       }}
                                     />
                                   </div>
                                 </div>
                                 <div className="row mb-3">
                                   <div className="col">
-                                    <label htmlFor="recipient-name" className="col-form-label">
+                                    <label
+                                      htmlFor="recipient-name"
+                                      className="col-form-label"
+                                    >
                                       Address
                                     </label>
                                     <input
@@ -419,13 +478,16 @@ function ProfileSippingAddress() {
                                       aria-label="First name"
                                       defaultValue={item.address}
                                       onChange={(e) => {
-                                        setNewaddressUpdate(e.target.value);
-                                        setIdupdate(item.id);
+                                        setNewaddressUpdate(e.target.value)
+                                        setIdupdate(item.id)
                                       }}
                                     />
                                   </div>
                                   <div className="col">
-                                    <label htmlFor="recipient-name" className="col-form-label">
+                                    <label
+                                      htmlFor="recipient-name"
+                                      className="col-form-label"
+                                    >
                                       Postal code
                                     </label>
                                     <input
@@ -434,14 +496,17 @@ function ProfileSippingAddress() {
                                       aria-label="Last name"
                                       defaultValue={item.postal_code}
                                       onChange={(e) => {
-                                        setPostalcodeUpdate(e.target.value);
-                                        setIdupdate(item.id);
+                                        setPostalcodeUpdate(e.target.value)
+                                        setIdupdate(item.id)
                                       }}
                                     />
                                   </div>
                                 </div>
                                 <div className="row mb-3">
-                                  <label htmlFor="recipient-name" className="col-form-label">
+                                  <label
+                                    htmlFor="recipient-name"
+                                    className="col-form-label"
+                                  >
                                     City or Subdistrict
                                   </label>
                                   <div className="col">
@@ -451,8 +516,8 @@ function ProfileSippingAddress() {
                                       aria-label="First name"
                                       defaultValue={item.city}
                                       onChange={(e) => {
-                                        setCityUpdate(e.target.value);
-                                        setIdupdate(item.id);
+                                        setCityUpdate(e.target.value)
+                                        setIdupdate(item.id)
                                       }}
                                     />
                                   </div>
@@ -485,7 +550,7 @@ function ProfileSippingAddress() {
                         </div>
                       </div>
                       <button
-                      type="button"
+                        type="button"
                         className="btn btn-danger ms-2"
                         onClick={() => handleRemoveAddress(item.id)}
                       >
@@ -499,7 +564,7 @@ function ProfileSippingAddress() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default ProfileSippingAddress;
+export default ProfileSippingAddress

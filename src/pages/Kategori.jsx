@@ -45,8 +45,8 @@ function App() {
                 <ContentCategory
                   title={item?.title}
                   price={item?.price}
-                  storename={item?.storename}
-                  productpictures={item.productpictures}
+                  storename={item?.store_name}
+                  productpictures={item.product_pictures}
                   id={item?.id}
                 />
               ))

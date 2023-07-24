@@ -67,7 +67,7 @@ function ProfileMyOrder() {
         {/* control Profile lift */}
         <MenuLifeProfile
           fullname={profile.fullname}
-          profilepicture={profile.profilepicture}
+          profilepicture={profile.profile_picture}
         />
 
         {/* Control Profile right */}
