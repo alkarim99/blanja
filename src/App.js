@@ -58,7 +58,7 @@ const router = createBrowserRouter([
     element: <ProfileMyOrder />,
   },
   {
-    path: "/profilesippingaddress",
+    path: "/ProfileSippingAddress",
     element: <ProfileSippingAddress />,
   },
 ])
