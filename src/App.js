@@ -38,7 +38,7 @@ const router = createBrowserRouter([
     element: <Product />,
   },
   {
-    path: "/checkOut/:id/:quantity",
+    path: "/checkout/:id/:quantity",
     element: <CheckOut />,
   },
   {
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
     element: <profilemyorder />,
   },
   {
-    path: "/ProfileSippingAddress",
+    path: "/profilesippingaddress",
     element: <ProfileSippingAddress />,
   },
 ])
