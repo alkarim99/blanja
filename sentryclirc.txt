@@ -1,0 +1,2 @@
+[auth]
+token=c2fef297c9514e1b8277e0ea82b3d95ab2aa700dac924cd5b5741816c8ba7472
