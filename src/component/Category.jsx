@@ -1,6 +1,6 @@
-import React from "react";
-import categoryCSS from "../assets/css/category.module.css";
-import { Link } from "react-router-dom";
+import React from "react"
+import categoryCSS from "../assets/css/category.module.css"
+import { Link } from "react-router-dom"
 
 function Category({ categoryData }) {
   return (
