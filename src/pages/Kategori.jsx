@@ -14,7 +14,7 @@ function App() {
   React.useEffect(() => {
     axios
       .get(
-        `https://kind-pear-slug-cap.cyclic.app/products/category/${category}?sortType=DESC&page=1`
+        `${process.env.REACT_APP_API_URL}/products/category/${category}?sortType=DESC&page=1`
       )
       .then((response) => setContentList(response?.data?.data))
       .catch((err) => {
