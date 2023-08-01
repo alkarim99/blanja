@@ -93,7 +93,7 @@ npm run build
 <br>
 
 <table>
- <tr>
+  <tr>
     <td><img width="350px" src="./documentation/login.png" border="0" alt="Login" /></td>
     <td> <img width="350px" src="./documentation/register.png" border="0"  alt="Register" /></td>
   </tr>
@@ -102,27 +102,37 @@ npm run build
     <td>Register</td>
   </tr>
   <tr>
- <td><img width="350px" src="./documentation/profile.png" border="0" alt="Profile" /> </td>
+    <td><img width="350px" src="./documentation/profile.png" border="0" alt="Profile" /> </td>
+    <td><img width="350px" src="./documentation/address.png" border="0" alt="Profile" /> </td>
+  </tr>
+  <tr>
+    <td>Edit Profile</td>
+    <td>Edit Address</td>
+  </tr>
+  <tr>
+    <td><img width="350px" src="./documentation/myorder.png" border="0" alt="Hire" /> </td>
     <td><img width="350px" src="./documentation/product.png" border="0" alt="Hire" /> </td>
   </tr>
-   <tr>
-   <td>Edit Profile</td>
+  <tr>
+    <td>My Order Pages</td>
     <td>Product Pages</td>
   </tr>
   <tr>
     <td><img width="350px" src="./documentation/search.png" border="0" alt="Search" /></td>
     <td><img width="350px" src="./documentation/detail.png" border="0" alt="Detail Talent" /> </td>
   </tr>
-   <tr>
+  <tr>
     <td>Search</td>
     <td>Detail Product</td>
-      <tr>
+  </tr>
+  <tr>
     <td><img width="350px" src="./documentation/checkout.png" border="0" alt="Search" /></td>
     <td><img width="350px" src="./documentation/payment.png" border="0" alt="Detail Talent" /> </td>
   </tr>
-   <tr>
+  <tr>
     <td>Checkout</td>
     <td>Payment</td>
+  </tr>
 </table>
 
 # Related Project
