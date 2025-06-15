@@ -55,7 +55,7 @@ function Modal() {
                         title={item?.title}
                         price={item.price}
                         storename={item.store_name}
-                        productpictures={item.product_pictures}
+                        productpictures={item.product_picture}
                         id={item.id}
                       />
                     )

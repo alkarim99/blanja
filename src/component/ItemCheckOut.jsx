@@ -25,7 +25,7 @@ function ItemCheckOut(props) {
           <div className="d-flex flex-row overPage">
             <div>
               <img
-                src={`${product.product_pictures}`}
+                src={`${product.product_picture}`}
                 className="contentCheckOut me-2 img-fluid"
               />
             </div>

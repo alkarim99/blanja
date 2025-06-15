@@ -140,7 +140,7 @@ function Product() {
         <div className="row mb-5">
           <div className="col-lg-4">
             <img
-              src={`${product.product_pictures}`}
+              src={`${product.product_picture}`}
               crossOrigin="anonymous"
               className="w-100 mb-2"
               alt=" product1"

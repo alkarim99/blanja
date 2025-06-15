@@ -34,10 +34,10 @@ function ProfileMyOrder() {
                 `${process.env.REACT_APP_API_URL}/products/${item?.product_id}`
               )
               .then((response) => {
-                // product.push(response?.data?.data[0]?.product_pictures)
+                // product.push(response?.data?.data[0]?.product_picture)
                 setOrderProduct((orderProduct) => [
                   ...orderProduct,
-                  response?.data?.data[0]?.product_pictures,
+                  response?.data?.data[0]?.product_picture,
                 ])
               })
           })
